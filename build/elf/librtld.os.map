@@ -1,0 +1,1429 @@
+Archive member included to satisfy reference by file (symbol)
+
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__libc_check_standard_fds)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (rtld_errno)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__closedir)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__rewinddir)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__readdir64)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__fdopendir)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+                              /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os) (__getdents64)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (_dl_addr_inside_object)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__profil)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__profile_frequency)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___stat64)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___fstat64)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___lstat64)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___fstatat64)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__openat64)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__lseek)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__access)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___close_nocancel)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___fcntl64_nocancel)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___open64_nocancel)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___read_nocancel)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___pread64_nocancel)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI___write_nocancel)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__libc_scratch_buffer_set_array_size)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__mmap)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__munmap)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__mprotect)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__lll_lock_wait_private)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__uname)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__GI__exit)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__getpid)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__environ)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__sigsetjmp)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__longjmp)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+                              /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os) (__sigaction)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__strdup)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (strcmp)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (strncmp)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (memchr)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (rawmemchr)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (memcmp)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (strchr)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (strlen)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (strnlen)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__stpcpy)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (strcspn)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (__mempcpy)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+                              /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os (memset)
+/home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+                              /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os) (__setitimer)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+START GROUP
+LOAD /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+LOAD /home/cgmin/20210402/glibc/build/elf/rtld-libc.a
+LOAD /usr/lib/gcc/x86_64-linux-gnu/9/libgcc.a
+END GROUP
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rela.init
+ *(.rela.init)
+
+.rela.text
+ *(.rela.text)
+
+.rela.fini
+ *(.rela.fini)
+
+.rela.rodata
+ *(.rela.rodata)
+
+.rela.data.rel.ro
+ *(.rela.data.rel.ro)
+
+.rela.data
+ *(.rela.data)
+
+.rela.tdata
+ *(.rela.tdata)
+
+.rela.tbss
+ *(.rela.tbss)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rela.got
+ *(.rela.got)
+
+.rela.bss
+ *(.rela.bss)
+
+.rela.ldata
+ *(.rela.ldata)
+
+.rela.lbss
+ *(.rela.lbss)
+
+.rela.lrodata
+ *(.rela.lrodata)
+
+.rela.ifunc
+ *(.rela.ifunc)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(SORT(.init))
+
+.plt
+ *(.plt)
+ *(.iplt)
+
+.plt.got
+ *(.plt.got)
+
+.plt.bnd
+ *(.plt.bnd)
+
+.text           0x0000000000000000    0x231be
+ *(.text .stub)
+ .text          0x0000000000000000    0x1e564 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+                0x0000000000000000                _start
+                0x0000000000000008                _dl_start_user
+                0x00000000000013b0                handle_preload_list
+                0x0000000000006370                _dl_dst_count
+                0x0000000000006420                _dl_dst_substitute
+                0x0000000000006b60                _dl_init_paths
+                0x0000000000006e90                _dl_process_pt_gnu_property
+                0x0000000000008560                _dl_map_object
+                0x0000000000008ff0                _dl_rtld_di_serinfo
+                0x0000000000009f60                _dl_lookup_symbol_x
+                0x000000000000aee0                _dl_setup_hash
+                0x000000000000af90                _dl_add_to_namespace_list
+                0x000000000000b020                _dl_new_object
+                0x000000000000b430                _dl_try_allocate_static_tls
+                0x000000000000b550                _dl_allocate_static_tls
+                0x000000000000b580                _dl_nothread_init_static_tls
+                0x000000000000b5d0                _dl_protect_relro
+                0x000000000000b630                _dl_reloc_bad_type
+                0x000000000000b700                _dl_relocate_object
+                0x000000000000d0a0                _dl_map_object_deps
+                0x000000000000e190                _dl_fixup
+                0x000000000000e350                _dl_profile_fixup
+                0x000000000000ea10                _dl_call_pltexit
+                0x000000000000ecc0                _dl_init
+                0x000000000000ede0                _dl_fini
+                0x000000000000f1d0                _dl_debug_state
+                0x000000000000f1d0                __GI__dl_debug_state
+                0x000000000000f1e0                _dl_debug_initialize
+                0x000000000000f940                _dl_sysdep_read_whole_file
+                0x000000000000f9d0                _dl_debug_printf
+                0x000000000000fa80                _dl_debug_printf_c
+                0x000000000000fb30                _dl_dprintf
+                0x000000000000fbd0                _dl_printf
+                0x000000000000fc80                _dl_error_printf
+                0x000000000000fd30                _dl_fatal_printf
+                0x000000000000fd30                __GI__dl_fatal_printf
+                0x000000000000fde0                _dl_name_match_p
+                0x000000000000fe50                _dl_higher_prime_number
+                0x000000000000fea0                _dl_strtoul
+                0x0000000000010000                _dl_check_map_versions
+                0x0000000000010760                _dl_check_all_versions
+                0x00000000000107e0                _dl_start_profile
+                0x0000000000010f50                __GI__dl_mcount
+                0x0000000000010f50                _dl_mcount
+                0x0000000000011470                _dl_tls_static_surplus_init
+                0x0000000000011500                _dl_next_tls_modid
+                0x00000000000115f0                _dl_count_modids
+                0x0000000000011660                _dl_determine_tlsoffset
+                0x0000000000011810                _dl_get_tls_static_info
+                0x0000000000011830                _dl_allocate_tls_storage
+                0x0000000000011910                __GI__dl_allocate_tls_init
+                0x0000000000011910                _dl_allocate_tls_init
+                0x0000000000011b40                __GI__dl_allocate_tls
+                0x0000000000011b40                _dl_allocate_tls
+                0x0000000000011bc0                _dl_deallocate_tls
+                0x0000000000011bc0                __GI__dl_deallocate_tls
+                0x0000000000011c40                _dl_update_slotinfo
+                0x0000000000011ed0                __GI___tls_get_addr
+                0x0000000000011ed0                ___tls_get_addr
+                0x0000000000011f20                _dl_tls_get_addr_soft
+                0x0000000000011fa0                _dl_add_to_slotinfo
+                0x00000000000120b0                __tls_get_addr_slow
+                0x00000000000120e0                _dl_get_origin
+                0x0000000000012240                _dl_scope_free
+                0x0000000000012320                _dl_make_stack_executable
+                0x0000000000012320                __GI__dl_make_stack_executable
+                0x0000000000012660                __GI__dl_find_dso_for_object
+                0x0000000000012660                _dl_find_dso_for_object
+                0x0000000000012730                _dl_open
+                0x0000000000012a70                _dl_show_scope
+                0x0000000000013850                _dl_close_worker
+                0x0000000000014920                _dl_close
+                0x0000000000014990                _dl_runtime_profile_avx512
+                0x0000000000014e10                _dl_runtime_profile_avx
+                0x0000000000015290                _dl_runtime_profile_sse
+                0x0000000000015490                _dl_runtime_resolve_fxsave
+                0x0000000000015510                _dl_runtime_resolve_xsave
+                0x00000000000155e0                _dl_runtime_resolve_xsavec
+                0x00000000000156c0                _dl_exception_create
+                0x00000000000156c0                __GI__dl_exception_create
+                0x00000000000157b0                __GI__dl_exception_create_format
+                0x00000000000157b0                _dl_exception_create_format
+                0x0000000000015c00                _dl_exception_free
+                0x0000000000015c00                __GI__dl_exception_free
+                0x0000000000015c30                _dl_sort_maps
+                0x0000000000015fd0                _dl_lookup_direct
+                0x00000000000161a0                _dl_call_libc_early_init
+                0x0000000000016220                _dl_write
+                0x0000000000016230                __thread_gscope_wait
+                0x0000000000016410                _dl_cache_libcmp
+                0x0000000000016bf0                _dl_load_cache_lookup
+                0x0000000000016f30                _dl_unload_cache
+                0x00000000000170a0                __GI___tunable_set_val
+                0x00000000000170c0                __GI___tunables_init
+                0x0000000000017620                __GI___tunables_print
+                0x0000000000017710                __tunable_get_val
+                0x0000000000017710                __GI___tunable_get_val
+                0x0000000000017780                _dl_make_tlsdesc_dynamic
+                0x0000000000017a70                _dl_tlsdesc_resolve_rela_fixup
+                0x0000000000017c20                _dl_tlsdesc_resolve_hold_fixup
+                0x0000000000017c60                _dl_unmap
+                0x0000000000017ce0                _dl_tlsdesc_return
+                0x0000000000017cf0                _dl_tlsdesc_undefweak
+                0x0000000000017d00                _dl_tlsdesc_dynamic
+                0x0000000000017da0                _dl_tlsdesc_resolve_rela
+                0x0000000000017e10                _dl_tlsdesc_resolve_hold
+                0x0000000000017e90                __tls_get_addr
+                0x0000000000019ce0                __x86_cpu_features
+                0x0000000000019d00                _dl_x86_init_cpu_features
+                0x0000000000019d20                _dl_x86_get_cpu_features
+                0x0000000000019d30                _dl_tunable_set_hwcaps
+                0x000000000001a7b0                _dl_sysdep_start
+                0x000000000001abe0                _dl_sysdep_start_cleanup
+                0x000000000001abf0                _dl_show_auxv
+                0x000000000001ad90                _dl_discover_osversion
+                0x000000000001af70                _dl_next_ld_env_entry
+                0x000000000001afc0                unsetenv
+                0x000000000001b1e0                __rtld_malloc_init_stubs
+                0x000000000001b220                __sigjmp_save
+                0x000000000001b230                __strerror_r
+                0x000000000001b320                __GI___libc_fatal
+                0x000000000001b320                __libc_fatal
+                0x000000000001b340                __GI___chk_fail
+                0x000000000001b340                __chk_fail
+                0x000000000001b350                __GI___assert_fail
+                0x000000000001b350                __assert_fail
+                0x000000000001b410                __rtld_malloc_is_complete
+                0x000000000001b670                __rtld_malloc_init_real
+                0x000000000001b760                __GI___assert_perror_fail
+                0x000000000001b760                __assert_perror_fail
+                0x000000000001b7c0                _itoa
+                0x000000000001b820                __strsep
+                0x000000000001b820                strsep
+                0x000000000001b820                __strsep_g
+                0x000000000001b950                _dl_signal_exception
+                0x000000000001b9a0                _dl_signal_error
+                0x000000000001b9f0                _dl_signal_cexception
+                0x000000000001ba80                _dl_signal_cerror
+                0x000000000001bb00                _dl_catch_exception
+                0x000000000001bbe0                _dl_catch_error
+                0x000000000001bc30                _dl_receive_error
+                0x000000000001bc80                _dl_resolve_conflicts
+                0x000000000001bed0                _dl_important_hwcaps
+                0x000000000001c7d0                _dl_hwcaps_split
+                0x000000000001c7f0                _dl_hwcaps_contains
+                0x000000000001c890                _dl_hwcaps_split_masked
+                0x000000000001c8e0                _dl_hwcaps_subdirs_active
+                0x000000000001caa0                _dl_usage
+                0x000000000001caf0                _dl_version
+                0x000000000001cb10                _dl_help
+                0x000000000001d050                _dl_diagnostics_print_string
+                0x000000000001d0e0                _dl_diagnostics_print_labeled_string
+                0x000000000001d120                _dl_diagnostics_print_labeled_value
+                0x000000000001d140                _dl_print_diagnostics
+                0x000000000001d5e0                _dl_diagnostics_kernel
+                0x000000000001d670                _dl_diagnostics_cpu
+                0x000000000001dc80                __brk
+                0x000000000001dc80                brk
+                0x000000000001dcb0                sbrk
+                0x000000000001dcb0                __sbrk
+                0x000000000001dd50                __getcwd
+                0x000000000001dd50                getcwd
+                0x000000000001e380                openat64
+                0x000000000001e3e0                __alloc_dir
+                0x000000000001e4d0                __opendir
+                0x000000000001e4d0                opendir
+ *fill*         0x000000000001e564        0xc 
+ .text          0x000000000001e570       0xd2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+                0x000000000001e610                __libc_check_standard_fds
+ .text          0x000000000001e642        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ *fill*         0x000000000001e642        0xe 
+ .text          0x000000000001e650       0x26 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+                0x000000000001e650                __closedir
+                0x000000000001e650                closedir
+ *fill*         0x000000000001e676        0xa 
+ .text          0x000000000001e680       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+                0x000000000001e680                rewinddir
+                0x000000000001e680                __rewinddir
+ .text          0x000000000001e6b0       0x90 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+                0x000000000001e6b0                readdir
+                0x000000000001e6b0                __readdir64
+                0x000000000001e6b0                __readdir
+                0x000000000001e6b0                readdir64
+ .text          0x000000000001e740       0x8e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+                0x000000000001e740                fdopendir
+                0x000000000001e740                __fdopendir
+ *fill*         0x000000000001e7ce        0x2 
+ .text          0x000000000001e7d0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+                0x000000000001e7d0                __getdents
+                0x000000000001e7d0                getdents64
+                0x000000000001e7d0                __getdents64
+ .text          0x000000000001e800       0x7b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+                0x000000000001e800                _dl_addr_inside_object
+ *fill*         0x000000000001e87b        0x5 
+ .text          0x000000000001e880       0xf7 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+                0x000000000001e8d0                __profil
+                0x000000000001e8d0                profil
+ *fill*         0x000000000001e977        0x9 
+ .text          0x000000000001e980        0x7 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+                0x000000000001e980                __profile_frequency
+ *fill*         0x000000000001e987        0x9 
+ .text          0x000000000001e990       0x12 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+                0x000000000001e990                stat64
+                0x000000000001e990                __stat
+                0x000000000001e990                __stat64
+                0x000000000001e990                stat
+                0x000000000001e990                __GI___stat64
+ *fill*         0x000000000001e9a2        0xe 
+ .text          0x000000000001e9b0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+                0x000000000001e9b0                __GI___fstat64
+                0x000000000001e9b0                fstat64
+                0x000000000001e9b0                fstat
+                0x000000000001e9b0                __fstat64
+                0x000000000001e9b0                __fstat
+ .text          0x000000000001e9e0       0x15 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+                0x000000000001e9e0                __lstat64
+                0x000000000001e9e0                lstat
+                0x000000000001e9e0                lstat64
+                0x000000000001e9e0                __GI___lstat64
+                0x000000000001e9e0                __lstat
+ *fill*         0x000000000001e9f5        0xb 
+ .text          0x000000000001ea00       0x26 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+                0x000000000001ea00                fstatat
+                0x000000000001ea00                __fstatat
+                0x000000000001ea00                fstatat64
+                0x000000000001ea00                __fstatat64
+                0x000000000001ea00                __GI___fstatat
+                0x000000000001ea00                __GI___fstatat64
+ *fill*         0x000000000001ea26        0xa 
+ .text          0x000000000001ea30       0x66 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+                0x000000000001ea30                __openat64
+                0x000000000001ea30                __libc_openat64
+                0x000000000001ea30                __openat
+                0x000000000001ea30                openat
+ *fill*         0x000000000001ea96        0xa 
+ .text          0x000000000001eaa0       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+                0x000000000001eaa0                __lseek64
+                0x000000000001eaa0                lseek
+                0x000000000001eaa0                __libc_lseek64
+                0x000000000001eaa0                __lseek
+                0x000000000001eaa0                __libc_lseek
+                0x000000000001eaa0                lseek64
+ .text          0x000000000001eac0       0x1e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+                0x000000000001eac0                access
+                0x000000000001eac0                __access
+ *fill*         0x000000000001eade        0x2 
+ .text          0x000000000001eae0       0x1e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+                0x000000000001eae0                __GI___close_nocancel
+ *fill*         0x000000000001eafe        0x2 
+ .text          0x000000000001eb00       0x7f /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+                0x000000000001eb00                __fcntl64_nocancel_adjusted
+                0x000000000001eb50                __fcntl64_nocancel
+                0x000000000001eb50                __GI___fcntl64_nocancel
+ *fill*         0x000000000001eb7f        0x1 
+ .text          0x000000000001eb80       0x76 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+                0x000000000001eb80                __GI___open_nocancel
+                0x000000000001eb80                __open_nocancel
+                0x000000000001eb80                __GI___open64_nocancel
+                0x000000000001eb80                __open64_nocancel
+ *fill*         0x000000000001ebf6        0xa 
+ .text          0x000000000001ec00       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+                0x000000000001ec00                __read_nocancel
+                0x000000000001ec00                __GI___read_nocancel
+ .text          0x000000000001ec20       0x28 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+                0x000000000001ec20                __GI___pread64_nocancel
+                0x000000000001ec20                __pread64_nocancel
+ *fill*         0x000000000001ec48        0x8 
+ .text          0x000000000001ec50       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+                0x000000000001ec50                __GI___write_nocancel
+                0x000000000001ec50                __write_nocancel
+ .text          0x000000000001ec70       0xb0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+                0x000000000001ec70                __libc_scratch_buffer_set_array_size
+ .text          0x000000000001ed20       0x91 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+                0x000000000001ed20                __mmap
+                0x000000000001ed20                mmap
+                0x000000000001ed20                __mmap64
+                0x000000000001ed20                mmap64
+ *fill*         0x000000000001edb1        0xf 
+ .text          0x000000000001edc0       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+                0x000000000001edc0                munmap
+                0x000000000001edc0                __GI___munmap
+                0x000000000001edc0                __GI_munmap
+                0x000000000001edc0                __munmap
+ .text          0x000000000001ede0       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+                0x000000000001ede0                __mprotect
+                0x000000000001ede0                __GI___mprotect
+                0x000000000001ede0                __GI_mprotect
+                0x000000000001ede0                mprotect
+ .text          0x000000000001ee00       0x59 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+                0x000000000001ee00                __lll_lock_wait_private
+ *fill*         0x000000000001ee59        0x7 
+ .text          0x000000000001ee60       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+                0x000000000001ee60                uname
+                0x000000000001ee60                __GI_uname
+                0x000000000001ee60                __uname
+                0x000000000001ee60                __GI___uname
+ .text          0x000000000001ee80       0x4a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+                0x000000000001ee80                _Exit
+                0x000000000001ee80                __GI__exit
+                0x000000000001ee80                _exit
+ *fill*         0x000000000001eeca        0x6 
+ .text          0x000000000001eed0        0x8 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+                0x000000000001eed0                __getpid
+                0x000000000001eed0                getpid
+                0x000000000001eed0                __GI_getpid
+                0x000000000001eed0                __GI___getpid
+ .text          0x000000000001eed8        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ *fill*         0x000000000001eed8        0x8 
+ .text          0x000000000001eee0       0x4f /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+                0x000000000001eee0                __sigsetjmp
+                0x000000000001eee0                __GI___sigsetjmp
+ *fill*         0x000000000001ef2f        0x1 
+ .text          0x000000000001ef30       0x4a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+                0x000000000001ef30                __longjmp
+ *fill*         0x000000000001ef7a        0x6 
+ .text          0x000000000001ef80      0x1e8 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+                0x000000000001efa0                __libc_sigaction
+                0x000000000001f140                sigaction
+                0x000000000001f140                __sigaction
+ *fill*         0x000000000001f168        0x8 
+ .text          0x000000000001f170       0x40 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+                0x000000000001f170                __strdup
+                0x000000000001f170                strdup
+ .text          0x000000000001f1b0     0x1439 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+                0x000000000001f1b0                strcmp
+ *fill*         0x00000000000205e9        0x7 
+ .text          0x00000000000205f0     0x1849 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+                0x00000000000205f0                strncmp
+ *fill*         0x0000000000021e39        0x7 
+ .text          0x0000000000021e40      0x323 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+                0x0000000000021e40                memchr
+                0x0000000000021e40                __memchr
+ *fill*         0x0000000000022163        0xd 
+ .text          0x0000000000022170      0x1f9 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+                0x0000000000022170                __rawmemchr
+                0x0000000000022170                rawmemchr
+ *fill*         0x0000000000022369        0x7 
+ .text          0x0000000000022370      0x400 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+                0x0000000000022370                bcmp
+                0x0000000000022370                memcmp
+ .text          0x0000000000022770      0x21a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+                0x0000000000022770                index
+                0x0000000000022770                strchr
+ *fill*         0x000000000002298a        0x6 
+ .text          0x0000000000022990      0x19c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+                0x0000000000022990                strlen
+ *fill*         0x0000000000022b2c        0x4 
+ .text          0x0000000000022b30      0x218 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+                0x0000000000022b30                __strnlen
+                0x0000000000022b30                strnlen
+ *fill*         0x0000000000022d48        0x8 
+ .text          0x0000000000022d50       0xdc /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+                0x0000000000022d50                stpcpy
+                0x0000000000022d50                __stpcpy
+ *fill*         0x0000000000022e2c        0x4 
+ .text          0x0000000000022e30       0x97 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+                0x0000000000022e30                strcspn
+ *fill*         0x0000000000022ec7        0x9 
+ .text          0x0000000000022ed0      0x1ed /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+                0x0000000000022ed0                mempcpy
+                0x0000000000022ed0                __mempcpy
+                0x0000000000022ee0                memmove
+                0x0000000000022ee0                memcpy
+ *fill*         0x00000000000230bd        0x3 
+ .text          0x00000000000230c0       0xda /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+                0x00000000000230c0                memset
+ *fill*         0x000000000002319a        0x6 
+ .text          0x00000000000231a0       0x1e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+                0x00000000000231a0                setitimer
+                0x00000000000231a0                __setitimer
+ *(.gnu.warning)
+
+.fini
+ *(SORT(.fini))
+
+.rodata         0x0000000000000000     0x14f8
+ *(.rodata)
+ .rodata        0x0000000000000000     0x1475 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ *fill*         0x0000000000001475        0x3 
+ .rodata        0x0000000000001478       0x40 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .rodata        0x00000000000014b8       0x40 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+
+.rodata.str1.1  0x0000000000000000     0x17aa
+ .rodata.str1.1
+                0x0000000000000000     0x1795 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .rodata.str1.1
+                0x0000000000001795       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .rodata.str1.1
+                0x00000000000017a9        0x1 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+
+.rodata.str1.8  0x0000000000000000     0x2f57
+ .rodata.str1.8
+                0x0000000000000000     0x2f19 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ *fill*         0x0000000000002f19        0x7 
+ .rodata.str1.8
+                0x0000000000002f20       0x37 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+
+.rodata.str1.16
+                0x0000000000000000      0x48e
+ .rodata.str1.16
+                0x0000000000000000      0x48e /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+                0x00000000000003f0                __GI__itoa_lower_digits
+                0x00000000000003f0                _itoa_lower_digits
+                0x0000000000000470                _dl_hwcaps_subdirs
+
+.rodata.cst16   0x0000000000000000       0x10
+ .rodata.cst16  0x0000000000000000       0x10 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+
+.rodata.cst4    0x0000000000000000        0x4
+ .rodata.cst4   0x0000000000000000        0x4 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+
+.rodata.str1.32
+                0x0000000000000000       0x7b
+ .rodata.str1.32
+                0x0000000000000000       0x7b /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+
+.rodata1
+ *(.rodata1)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x0000000000000000     0x3b28
+ *(.eh_frame)
+ .eh_frame      0x0000000000000000     0x3050 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .eh_frame      0x0000000000003050       0x68 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .eh_frame      0x00000000000030b8       0x38 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .eh_frame      0x00000000000030f0       0x38 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .eh_frame      0x0000000000003128       0x50 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .eh_frame      0x0000000000003178       0x50 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .eh_frame      0x00000000000031c8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .eh_frame      0x00000000000031f8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .eh_frame      0x0000000000003228       0x50 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+                                         0x48 (size before relaxing)
+ .eh_frame      0x0000000000003278       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .eh_frame      0x00000000000032a8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .eh_frame      0x00000000000032d8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .eh_frame      0x0000000000003308       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .eh_frame      0x0000000000003338       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .eh_frame      0x0000000000003368       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .eh_frame      0x0000000000003398       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .eh_frame      0x00000000000033c8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .eh_frame      0x00000000000033f8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .eh_frame      0x0000000000003428       0x48 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .eh_frame      0x0000000000003470       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .eh_frame      0x00000000000034a0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .eh_frame      0x00000000000034d0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .eh_frame      0x0000000000003500       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .eh_frame      0x0000000000003530       0x60 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .eh_frame      0x0000000000003590       0x48 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .eh_frame      0x00000000000035d8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .eh_frame      0x0000000000003608       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .eh_frame      0x0000000000003638       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .eh_frame      0x0000000000003668       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .eh_frame      0x0000000000003698       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .eh_frame      0x00000000000036c8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .eh_frame      0x00000000000036f8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .eh_frame      0x0000000000003728       0x48 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .eh_frame      0x0000000000003770       0xe8 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .eh_frame      0x0000000000003858       0x40 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .eh_frame      0x0000000000003898       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .eh_frame      0x00000000000038c8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .eh_frame      0x00000000000038f8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .eh_frame      0x0000000000003928       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .eh_frame      0x0000000000003958       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .eh_frame      0x0000000000003988       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .eh_frame      0x00000000000039b8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .eh_frame      0x00000000000039e8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .eh_frame      0x0000000000003a18       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .eh_frame      0x0000000000003a48       0x38 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .eh_frame      0x0000000000003a80       0x48 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+                                         0x40 (size before relaxing)
+ .eh_frame      0x0000000000003ac8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .eh_frame      0x0000000000003af8       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+
+.eh_frame
+ *(.eh_frame)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges .exception_ranges*)
+
+.tdata
+ *(.tdata)
+
+.tbss
+ *(.tbss)
+
+.preinit_array
+ *(.preinit_array)
+
+.jcr
+ *(.jcr)
+
+.dynamic
+ *(.dynamic)
+
+.got
+ *(.got)
+ *(.igot)
+
+.got.plt
+ *(.got.plt)
+ *(.igot.plt)
+
+.data           0x0000000000000000     0x1038
+ *(.data)
+ .data          0x0000000000000000     0x1038 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+                0x0000000000000000                _rtld_global
+                0x0000000000000000                _rtld_local
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .data          0x0000000000001038        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.data.rel.ro    0x0000000000000000     0x1210
+ .data.rel.ro   0x0000000000000000     0x1210 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+                0x0000000000000090                __pointer_chk_guard_local
+                0x0000000000000098                _dl_skip_args
+                0x00000000000000a0                __GI__dl_argv
+                0x00000000000000a0                _dl_argv
+                0x00000000000000a8                _dl_argc
+                0x00000000000000c0                _rtld_global_ro
+                0x00000000000000c0                _rtld_local_ro
+                0x00000000000003f0                __rtld_search_dirs
+                0x0000000000000420                __rtld_env_path_list
+                0x0000000000000430                __stack_prot
+                0x00000000000011d0                __x86_cpu_features_p
+                0x00000000000011d8                _dl_random
+                0x00000000000011e0                __libc_stack_end
+                0x00000000000011e0                __GI___libc_stack_end
+                0x00000000000011e8                __GI___libc_enable_secure
+                0x00000000000011e8                __libc_enable_secure
+                0x00000000000011f0                __rtld_realloc
+                0x00000000000011f8                __rtld_malloc
+                0x0000000000001200                __rtld_free
+                0x0000000000001208                __rtld_calloc
+
+.data1
+ *(.data1)
+
+.bss            0x0000000000000000      0x148
+ *(.dynbss)
+ *(.bss)
+ .bss           0x0000000000000000      0x120 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+                0x0000000000000118                __curbrk
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .bss           0x0000000000000120        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .bss           0x0000000000000120       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .bss           0x0000000000000140        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .bss           0x0000000000000140        0x8 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+                0x0000000000000140                _environ
+                0x0000000000000140                __environ
+                0x0000000000000140                environ
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .bss           0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+ *(COMMON)
+ COMMON         0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ COMMON         0x0000000000000148        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+
+.lbss
+ *(.dynlbss)
+ *(.lbss)
+ *(LARGE_COMMON)
+
+.lrodata
+ *(.lrodata)
+
+.ldata
+ *(.ldata)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000      0xcef
+ *(.comment)
+ .comment       0x0000000000000000      0x7ba /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .comment       0x00000000000007ba       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .comment       0x00000000000007e5       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .comment       0x0000000000000810       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .comment       0x000000000000083b       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .comment       0x0000000000000866       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .comment       0x0000000000000891       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .comment       0x00000000000008bc       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .comment       0x00000000000008e7       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .comment       0x0000000000000912       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .comment       0x000000000000093d       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .comment       0x0000000000000968       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .comment       0x0000000000000993       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .comment       0x00000000000009be       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .comment       0x00000000000009e9       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .comment       0x0000000000000a14       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .comment       0x0000000000000a3f       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .comment       0x0000000000000a6a       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .comment       0x0000000000000a95       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .comment       0x0000000000000ac0       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .comment       0x0000000000000aeb       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .comment       0x0000000000000b16       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .comment       0x0000000000000b41       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .comment       0x0000000000000b6c       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .comment       0x0000000000000b97       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .comment       0x0000000000000bc2       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .comment       0x0000000000000bed       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .comment       0x0000000000000c18       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .comment       0x0000000000000c43       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .comment       0x0000000000000c6e       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .comment       0x0000000000000c99       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .comment       0x0000000000000cc4       0x2b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .note.GNU-stack
+                0x0000000000000000        0x0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000     0x1240
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000      0x930 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .debug_aranges
+                0x0000000000000930       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_aranges
+                0x0000000000000960       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_aranges
+                0x0000000000000980       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_aranges
+                0x00000000000009b0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_aranges
+                0x00000000000009e0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_aranges
+                0x0000000000000a10       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_aranges
+                0x0000000000000a40       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_aranges
+                0x0000000000000a70       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_aranges
+                0x0000000000000aa0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_aranges
+                0x0000000000000ad0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_aranges
+                0x0000000000000b00       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_aranges
+                0x0000000000000b30       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_aranges
+                0x0000000000000b60       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_aranges
+                0x0000000000000b90       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_aranges
+                0x0000000000000bc0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_aranges
+                0x0000000000000bf0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_aranges
+                0x0000000000000c20       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_aranges
+                0x0000000000000c50       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_aranges
+                0x0000000000000c80       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_aranges
+                0x0000000000000cb0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_aranges
+                0x0000000000000ce0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_aranges
+                0x0000000000000d10       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_aranges
+                0x0000000000000d40       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_aranges
+                0x0000000000000d70       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_aranges
+                0x0000000000000da0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_aranges
+                0x0000000000000dd0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_aranges
+                0x0000000000000e00       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_aranges
+                0x0000000000000e30       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .debug_aranges
+                0x0000000000000e60       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_aranges
+                0x0000000000000e90       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_aranges
+                0x0000000000000ec0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_aranges
+                0x0000000000000ef0       0x20 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_aranges
+                0x0000000000000f10       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_aranges
+                0x0000000000000f40       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_aranges
+                0x0000000000000f70       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .debug_aranges
+                0x0000000000000fa0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_aranges
+                0x0000000000000fd0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .debug_aranges
+                0x0000000000001000       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .debug_aranges
+                0x0000000000001030       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .debug_aranges
+                0x0000000000001060       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .debug_aranges
+                0x0000000000001090       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .debug_aranges
+                0x00000000000010c0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .debug_aranges
+                0x00000000000010f0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .debug_aranges
+                0x0000000000001120       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .debug_aranges
+                0x0000000000001150       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .debug_aranges
+                0x0000000000001180       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .debug_aranges
+                0x00000000000011b0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+ .debug_aranges
+                0x00000000000011e0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .debug_aranges
+                0x0000000000001210       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000    0xf0dd7
+ *(.debug_info)
+ .debug_info    0x0000000000000000    0xcf8c7 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .debug_info    0x00000000000cf8c7      0xc5d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_info    0x00000000000d0524      0x821 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_info    0x00000000000d0d45     0x1e59 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_info    0x00000000000d2b9e     0x1df4 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_info    0x00000000000d4992     0x1e69 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_info    0x00000000000d67fb     0x1fbe /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_info    0x00000000000d87b9     0x1d63 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_info    0x00000000000da51c     0x2998 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_info    0x00000000000dceb4      0xcce /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_info    0x00000000000ddb82     0x3e68 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_info    0x00000000000e19ea      0x291 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_info    0x00000000000e1c7b      0x2b8 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_info    0x00000000000e1f33      0x293 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_info    0x00000000000e21c6      0xab4 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_info    0x00000000000e2c7a      0xa80 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_info    0x00000000000e36fa      0x977 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_info    0x00000000000e4071      0x942 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_info    0x00000000000e49b3      0x91b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_info    0x00000000000e52ce      0xc21 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_info    0x00000000000e5eef      0xa2f /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_info    0x00000000000e691e      0x987 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_info    0x00000000000e72a5      0x9c1 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_info    0x00000000000e7c66      0x98e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_info    0x00000000000e85f4      0x49b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_info    0x00000000000e8a8f     0x4334 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_info    0x00000000000ecdc3       0x73 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_info    0x00000000000ece36       0x73 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_info    0x00000000000ecea9     0x10bd /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .debug_info    0x00000000000edf66       0x74 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_info    0x00000000000edfda      0x950 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_info    0x00000000000ee92a       0x74 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_info    0x00000000000ee99e      0x103 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_info    0x00000000000eeaa1       0x6d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_info    0x00000000000eeb0e       0x70 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_info    0x00000000000eeb7e      0xf76 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .debug_info    0x00000000000efaf4      0x39b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_info    0x00000000000efe8f       0x6d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .debug_info    0x00000000000efefc       0x6d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .debug_info    0x00000000000eff69       0x7a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .debug_info    0x00000000000effe3       0x7d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .debug_info    0x00000000000f0060       0x6d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .debug_info    0x00000000000f00cd       0x7a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .debug_info    0x00000000000f0147       0x7a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .debug_info    0x00000000000f01c1       0x7a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .debug_info    0x00000000000f023b       0x6d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .debug_info    0x00000000000f02a8       0x6e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .debug_info    0x00000000000f0316       0x8b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+ .debug_info    0x00000000000f03a1       0x8a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .debug_info    0x00000000000f042b      0x9ac /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug_abbrev   0x0000000000000000    0x16140
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000    0x114b9 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .debug_abbrev  0x00000000000114b9      0x27a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_abbrev  0x0000000000011733      0x165 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_abbrev  0x0000000000011898      0x3eb /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_abbrev  0x0000000000011c83      0x38c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_abbrev  0x000000000001200f      0x3b7 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_abbrev  0x00000000000123c6      0x3bd /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_abbrev  0x0000000000012783      0x3a4 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_abbrev  0x0000000000012b27      0x3c2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_abbrev  0x0000000000012ee9      0x2f8 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_abbrev  0x00000000000131e1      0x432 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_abbrev  0x0000000000013613       0xff /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_abbrev  0x0000000000013712       0xe7 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_abbrev  0x00000000000137f9       0xff /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_abbrev  0x00000000000138f8      0x1f8 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_abbrev  0x0000000000013af0      0x22d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_abbrev  0x0000000000013d1d      0x1db /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_abbrev  0x0000000000013ef8      0x1ca /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_abbrev  0x00000000000140c2      0x1cc /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_abbrev  0x000000000001428e      0x2c2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_abbrev  0x0000000000014550      0x1f2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_abbrev  0x0000000000014742      0x1dd /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_abbrev  0x000000000001491f      0x1e5 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_abbrev  0x0000000000014b04      0x1e2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_abbrev  0x0000000000014ce6      0x275 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_abbrev  0x0000000000014f5b      0x4f3 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_abbrev  0x000000000001544e       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_abbrev  0x0000000000015462       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_abbrev  0x0000000000015476      0x291 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .debug_abbrev  0x0000000000015707       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_abbrev  0x000000000001571b      0x1cd /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_abbrev  0x00000000000158e8       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_abbrev  0x00000000000158fc       0x97 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_abbrev  0x0000000000015993       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_abbrev  0x00000000000159a7       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_abbrev  0x00000000000159bb      0x2c9 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .debug_abbrev  0x0000000000015c84      0x1e2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_abbrev  0x0000000000015e66       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .debug_abbrev  0x0000000000015e7a       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .debug_abbrev  0x0000000000015e8e       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .debug_abbrev  0x0000000000015ea2       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .debug_abbrev  0x0000000000015eb6       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .debug_abbrev  0x0000000000015eca       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .debug_abbrev  0x0000000000015ede       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .debug_abbrev  0x0000000000015ef2       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .debug_abbrev  0x0000000000015f06       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .debug_abbrev  0x0000000000015f1a       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .debug_abbrev  0x0000000000015f2e       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+ .debug_abbrev  0x0000000000015f42       0x14 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .debug_abbrev  0x0000000000015f56      0x1ea /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug_line     0x0000000000000000    0x2e61e
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x0000000000000000    0x26dce /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .debug_line    0x0000000000026dce      0x36e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_line    0x000000000002713c      0x1e9 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_line    0x0000000000027325      0x53a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_line    0x000000000002785f      0x51f /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_line    0x0000000000027d7e      0x572 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_line    0x00000000000282f0      0x5b6 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_line    0x00000000000288a6      0x4a6 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_line    0x0000000000028d4c      0x536 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_line    0x0000000000029282      0x451 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_line    0x00000000000296d3      0x60c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_line    0x0000000000029cdf      0x108 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_line    0x0000000000029de7      0x13b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_line    0x0000000000029f22      0x109 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_line    0x000000000002a02b      0x2af /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_line    0x000000000002a2da      0x2ff /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_line    0x000000000002a5d9      0x276 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_line    0x000000000002a84f      0x27e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_line    0x000000000002aacd      0x284 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_line    0x000000000002ad51      0x303 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_line    0x000000000002b054      0x2cb /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_line    0x000000000002b31f      0x287 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_line    0x000000000002b5a6      0x293 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_line    0x000000000002b839      0x288 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_line    0x000000000002bac1      0x203 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_line    0x000000000002bcc4      0x72a /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_line    0x000000000002c3ee       0x59 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-munmap.os)
+ .debug_line    0x000000000002c447       0x59 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mprotect.os)
+ .debug_line    0x000000000002c4a0      0x333 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .debug_line    0x000000000002c7d3       0x59 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-uname.os)
+ .debug_line    0x000000000002c82c      0x2a9 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_line    0x000000000002cad5       0x58 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getpid.os)
+ .debug_line    0x000000000002cb2d       0x75 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_line    0x000000000002cba2       0x61 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setjmp.os)
+ .debug_line    0x000000000002cc03       0x61 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-__longjmp.os)
+ .debug_line    0x000000000002cc64      0x439 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .debug_line    0x000000000002d09d      0x12d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_line    0x000000000002d1ca      0x48f /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcmp-sse2.os)
+ .debug_line    0x000000000002d659      0x525 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strncmp-sse2.os)
+ .debug_line    0x000000000002db7e      0x126 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memchr-sse2.os)
+ .debug_line    0x000000000002dca4       0xd3 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rawmemchr-sse2.os)
+ .debug_line    0x000000000002dd77      0x14c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memcmp-sse2.os)
+ .debug_line    0x000000000002dec3       0xde /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strchr-sse2.os)
+ .debug_line    0x000000000002dfa1       0xa5 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strlen-sse2.os)
+ .debug_line    0x000000000002e046       0xa5 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strnlen-sse2.os)
+ .debug_line    0x000000000002e0eb       0x95 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stpcpy-sse2.os)
+ .debug_line    0x000000000002e180       0x80 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strcspn-sse2.os)
+ .debug_line    0x000000000002e200       0xfc /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memmove-sse2-unaligned-erms.os)
+ .debug_line    0x000000000002e2fc       0xac /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-memset-sse2-unaligned-erms.os)
+ .debug_line    0x000000000002e3a8      0x276 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str      0x0000000000000000    0x975c5
+ *(.debug_str)
+ .debug_str     0x0000000000000000    0x805a0 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .debug_str     0x00000000000805a0      0x878 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_str     0x0000000000080e18      0x60b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-errno.os)
+ .debug_str     0x0000000000081423     0x152d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_str     0x0000000000082950     0x14fd /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_str     0x0000000000083e4d     0x14fb /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_str     0x0000000000085348     0x162d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_str     0x0000000000086975     0x146d /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_str     0x0000000000087de2     0x1c17 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_str     0x00000000000899f9      0x8b2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_str     0x000000000008a2ab     0x2a38 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-prof-freq.os)
+ .debug_str     0x000000000008cce3      0x2cf /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_str     0x000000000008cfb2      0x30e /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_str     0x000000000008d2c0      0x2d2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_str     0x000000000008d592      0x796 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_str     0x000000000008dd28      0x710 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_str     0x000000000008e438      0x6f1 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_str     0x000000000008eb29      0x6e0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_str     0x000000000008f209      0x6f5 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_str     0x000000000008f8fe      0x7e2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_str     0x00000000000900e0      0x788 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_str     0x0000000000090868      0x719 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_str     0x0000000000090f81      0x741 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_str     0x00000000000916c2      0x71c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_str     0x0000000000091dde      0x347 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_str     0x0000000000092125     0x2e42 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_str     0x0000000000094f67      0xad5 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .debug_str     0x0000000000095a3c      0x6d2 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_str     0x000000000009610e      0x1fc /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-environ.os)
+ .debug_str     0x000000000009630a      0x8da /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .debug_str     0x0000000000096be4      0x2d6 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_str     0x0000000000096eba      0x70b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug_loc      0x0000000000000000    0x41f00
+ *(.debug_loc)
+ .debug_loc     0x0000000000000000    0x3fdd9 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .debug_loc     0x000000000003fdd9      0x138 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-check_fds.os)
+ .debug_loc     0x000000000003ff11       0xbb /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-closedir.os)
+ .debug_loc     0x000000000003ffcc       0x4c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-rewinddir.os)
+ .debug_loc     0x0000000000040018      0x1d4 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_loc     0x00000000000401ec       0xd1 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fdopendir.os)
+ .debug_loc     0x00000000000402bd      0x13c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_loc     0x00000000000403f9       0xd7 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-dl-addr-obj.os)
+ .debug_loc     0x00000000000404d0      0x28b /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-profil.os)
+ .debug_loc     0x000000000004075b       0x98 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-stat64.os)
+ .debug_loc     0x00000000000407f3       0xab /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstat64.os)
+ .debug_loc     0x000000000004089e       0x98 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lstat64.os)
+ .debug_loc     0x0000000000040936       0xee /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_loc     0x0000000000040a24      0x16c /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_loc     0x0000000000040b90       0x23 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_loc     0x0000000000040bb3       0x23 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_loc     0x0000000000040bd6       0x23 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_loc     0x0000000000040bf9      0x2ff /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_loc     0x0000000000040ef8      0x274 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_loc     0x000000000004116c       0x23 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_loc     0x000000000004118f       0x8f /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_loc     0x000000000004121e       0x23 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_loc     0x0000000000041241      0x374 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_loc     0x00000000000415b5      0x399 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_loc     0x000000000004194e      0x186 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .debug_loc     0x0000000000041ad4       0xc5 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_loc     0x0000000000041b99      0x28f /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .debug_loc     0x0000000000041e28       0xb5 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-strdup.os)
+ .debug_loc     0x0000000000041edd       0x23 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x0000000000000000     0xbe90
+ *(.debug_ranges)
+ .debug_ranges  0x0000000000000000     0xb860 /home/cgmin/20210402/glibc/build/elf/dl-allobjs.os
+ .debug_ranges  0x000000000000b860       0xa0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-readdir64.os)
+ .debug_ranges  0x000000000000b900       0x50 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-getdents64.os)
+ .debug_ranges  0x000000000000b950       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fstatat64.os)
+ .debug_ranges  0x000000000000b980       0x70 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-openat64.os)
+ .debug_ranges  0x000000000000b9f0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-lseek64.os)
+ .debug_ranges  0x000000000000ba20       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-access.os)
+ .debug_ranges  0x000000000000ba50       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-close_nocancel.os)
+ .debug_ranges  0x000000000000ba80       0x60 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-fcntl_nocancel.os)
+ .debug_ranges  0x000000000000bae0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-open64_nocancel.os)
+ .debug_ranges  0x000000000000bb10       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-read_nocancel.os)
+ .debug_ranges  0x000000000000bb40       0x70 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-pread64_nocancel.os)
+ .debug_ranges  0x000000000000bbb0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-write_nocancel.os)
+ .debug_ranges  0x000000000000bbe0       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-scratch_buffer_set_array_size.os)
+ .debug_ranges  0x000000000000bc10       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-mmap64.os)
+ .debug_ranges  0x000000000000bc40       0x60 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-libc-lowlevellock.os)
+ .debug_ranges  0x000000000000bca0       0xd0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-_exit.os)
+ .debug_ranges  0x000000000000bd70       0xf0 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-sigaction.os)
+ .debug_ranges  0x000000000000be60       0x30 /home/cgmin/20210402/glibc/build/elf/rtld-libc.a(rtld-setitimer.os)
+
+.debug_macro
+ *(.debug_macro)
+
+.gnu.attributes
+ *(.gnu.attributes)
+OUTPUT(/home/cgmin/20210402/glibc/build/elf/librtld.os elf64-x86-64)

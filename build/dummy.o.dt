@@ -1,0 +1,15 @@
+/home/cgmin/20210402/glibc/build/dummy.o: \
+ /home/cgmin/20210402/glibc/build/dummy.c ../include/stdc-predef.h \
+ /home/cgmin/20210402/glibc/build/libc-modules.h \
+ ../include/libc-symbols.h /home/cgmin/20210402/glibc/build/config.h \
+ ../sysdeps/generic/symbol-hacks.h
+
+../include/stdc-predef.h:
+
+/home/cgmin/20210402/glibc/build/libc-modules.h:
+
+../include/libc-symbols.h:
+
+/home/cgmin/20210402/glibc/build/config.h:
+
+../sysdeps/generic/symbol-hacks.h:
