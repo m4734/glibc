@@ -1,4 +1,0 @@
-/* GNU ld script
-*/
-OUTPUT_FORMAT(elf64-x86-64)
-GROUP ( /home/cgmin/20210402/glibc/build/install/lib/libm.so.6  AS_NEEDED ( /home/cgmin/20210402/glibc/build/install/lib/libmvec.so.1 ) )

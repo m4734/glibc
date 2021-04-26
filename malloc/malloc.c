@@ -845,6 +845,7 @@ int      __posix_memalign(void **, size_t, size_t);
   slower.
 */
 
+void*  __libc_malloc_group(size_t, size_t); //cgmin
 
 /* M_MXFAST is a standard SVID/XPG tuning option, usually listed in malloc.h */
 #ifndef M_MXFAST
@@ -3196,7 +3197,6 @@ __libc_malloc (size_t bytes)
 
   _Static_assert (PTRDIFF_MAX <= SIZE_MAX / 2,
                   "PTRDIFF_MAX is not more than half of SIZE_MAX");
-
   void *(*hook) (size_t, const void *)
     = atomic_forced_read (__malloc_hook);
   if (__builtin_expect (hook != NULL, 0))
@@ -3533,6 +3533,7 @@ libc_hidden_def (__libc_memalign)
 void *
 __libc_valloc (size_t bytes)
 {
+
   void *p;
 
   if (__malloc_initialized < 0)
@@ -3719,6 +3720,13 @@ __libc_calloc (size_t n, size_t elem_size)
 
   return mem;
 #endif
+}
+
+void *
+__libc_malloc_group(size_t bytes, size_t group) //cgmin
+{
+	printf("byte %lu group %lu\n",bytes,group);
+	return NULL;
 }
 
 /*
@@ -5860,7 +5868,6 @@ __malloc_info (int options, FILE *fp)
 }
 weak_alias (__malloc_info, malloc_info)
 
-
 strong_alias (__libc_calloc, __calloc) weak_alias (__libc_calloc, calloc)
 strong_alias (__libc_free, __free) strong_alias (__libc_free, free)
 strong_alias (__libc_malloc, __malloc) strong_alias (__libc_malloc, malloc)
@@ -5878,6 +5885,8 @@ strong_alias (__libc_mallopt, __mallopt) weak_alias (__libc_mallopt, mallopt)
 weak_alias (__malloc_stats, malloc_stats)
 weak_alias (__malloc_usable_size, malloc_usable_size)
 weak_alias (__malloc_trim, malloc_trim)
+
+strong_alias (__libc_malloc_group, __malloc_group) weak_alias (__libc_malloc_group, malloc_group) //cgmin
 
 #if SHLIB_COMPAT (libc, GLIBC_2_0, GLIBC_2_26)
 compat_symbol (libc, __libc_free, cfree, GLIBC_2_0);

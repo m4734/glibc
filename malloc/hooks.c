@@ -24,6 +24,16 @@
 /* Hooks for debugging versions.  The initial hooks just call the
    initialization routine, then do the normal work. */
 
+/*
+static void *
+malloc_group_hook_ini (size_t sz, size_t group, const void *caller) //cgmin
+{
+  __malloc_hook = NULL;
+  ptmalloc_init ();
+  return __libc_malloc_group (sz,group);
+}
+*/
+
 static void *
 malloc_hook_ini (size_t sz, const void *caller)
 {

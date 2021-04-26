@@ -96,5 +96,8 @@ libc {
     __libc_alloc_buffer_copy_bytes;
     __libc_alloc_buffer_copy_string;
     __libc_alloc_buffer_create_failure;
+
+    __libc_malloc_group;
+    malloc_group;
   }
 }
