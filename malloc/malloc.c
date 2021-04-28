@@ -845,6 +845,7 @@ int      __posix_memalign(void **, size_t, size_t);
   slower.
 */
 
+
 void*  __libc_malloc_group(size_t, size_t); //cgmin
 
 /* M_MXFAST is a standard SVID/XPG tuning option, usually listed in malloc.h */
@@ -3251,6 +3252,7 @@ __libc_malloc (size_t bytes)
 
   assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
           ar_ptr == arena_for_chunk (mem2chunk (victim)));
+
   return victim;
 }
 libc_hidden_def (__libc_malloc)
@@ -3277,7 +3279,6 @@ __libc_free (void *mem)
      This gives a useful double-free detection.  */
   *(volatile char *)mem;
 #endif
-
   int err = errno;
 
   p = mem2chunk (mem);
@@ -3287,6 +3288,8 @@ __libc_free (void *mem)
 
   if (chunk_is_mmapped (p))                       /* release mmapped memory. */
     {
+
+//malloc_printerr("wwwwefefef111\n"); //cgmin test
       /* See if the dynamic brk/mmap threshold needs adjusting.
 	 Dumped fake mmapped chunks do not affect the threshold.  */
       if (!mp_.no_dyn_threshold
@@ -3305,7 +3308,10 @@ __libc_free (void *mem)
     {
       MAYBE_INIT_TCACHE ();
 
+//malloc_printerr("wwwwefefef222\n"); //cgmin test
       ar_ptr = arena_for_chunk (p);
+
+//malloc_printerr("wwwwefefef333\n"); //cgmin test
       _int_free (ar_ptr, p, 0);
     }
 
@@ -3542,6 +3548,7 @@ __libc_valloc (size_t bytes)
   void *address = RETURN_ADDRESS (0);
   size_t pagesize = GLRO (dl_pagesize);
   p = _mid_memalign (pagesize, bytes, address);
+  printf("valloc p %p\n",p); //cgmin test
   return TAG_NEW_USABLE (p);
 }
 
@@ -3725,10 +3732,85 @@ __libc_calloc (size_t n, size_t elem_size)
 void *
 __libc_malloc_group(size_t bytes, size_t group) //cgmin
 {
+
+	/*
 	printf("byte %lu group %lu\n",bytes,group);
 	return NULL;
-}
+*/
+	if (group >= arena_group_max)
+	{
+		printf("group %lu >= arena_group_max %lu\n",group,arena_group_max);
+		return NULL;
+	}
+  mstate ar_ptr;
+  void *victim;
 
+  _Static_assert (PTRDIFF_MAX <= SIZE_MAX / 2,
+                  "PTRDIFF_MAX is not more than half of SIZE_MAX");
+  void *(*hook) (size_t, const void *)
+    = atomic_forced_read (__malloc_hook);
+  if (__builtin_expect (hook != NULL, 0))
+    return (*hook)(bytes, RETURN_ADDRESS (0));
+#if USE_TCACHE
+  /* int_free also calls request2size, be careful to not pad twice.  */
+  size_t tbytes;
+  if (!checked_request2size (bytes, &tbytes))
+    {
+      __set_errno (ENOMEM);
+      return NULL;
+    }
+  size_t tc_idx = csize2tidx (tbytes);
+
+  MAYBE_INIT_TCACHE ();
+
+  DIAG_PUSH_NEEDS_COMMENT;
+  if (tc_idx < mp_.tcache_bins
+      && tcache
+      && tcache->counts[tc_idx] > 0)
+    {
+      victim = tcache_get (tc_idx);
+      return TAG_NEW_USABLE (victim);
+    }
+  DIAG_POP_NEEDS_COMMENT;
+#endif
+
+
+//cgmin malloc group arena
+/*
+  if (SINGLE_THREAD_P)
+    {
+      victim = TAG_NEW_USABLE (_int_malloc (&main_arena, bytes));
+      assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
+	      &main_arena == arena_for_chunk (mem2chunk (victim)));
+      return victim;
+    }
+*/
+  arena_get_group (ar_ptr, bytes,group);
+
+
+
+  victim = _int_malloc (ar_ptr, bytes);
+  /* Retry with another arena only if we were able to find a usable arena
+     before.  */
+  if (!victim && ar_ptr != NULL)
+    {
+      LIBC_PROBE (memory_malloc_retry, 1, bytes);
+      ar_ptr = arena_get_retry (ar_ptr, bytes);
+      victim = _int_malloc (ar_ptr, bytes);
+    }
+
+  if (ar_ptr != NULL)
+    __libc_lock_unlock (ar_ptr->mutex);
+
+  victim = TAG_NEW_USABLE (victim);
+
+  assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
+          ar_ptr == arena_for_chunk (mem2chunk (victim)));
+
+printf("victim %p\n",victim); //cgmin test
+
+  return victim;
+}
 /*
    ------------------------------ malloc ------------------------------
  */
@@ -4396,6 +4478,9 @@ _int_free (mstate av, mchunkptr p, int have_lock)
   mchunkptr fwd;               /* misc temp for linking */
 
   size = chunksize (p);
+
+//if (av == thread_arena_group[0] || av != &main_arena) //cgmin test
+//	malloc_printerr("aaaeee\n");
 
   /* Little security check which won't hurt performance: the
      allocator never wrapps around at the end of the address space.

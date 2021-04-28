@@ -73,6 +73,9 @@ extern int sanity_check_heap_info_alignment[(sizeof (heap_info)
 
 static __thread mstate thread_arena attribute_tls_model_ie;
 
+static __thread mstate thread_arena_group[2] attribute_tls_model_ie; //cgmin thread arena
+static size_t arena_group_max=2;
+
 /* Arena free list.  free_list_lock synchronizes access to the
    free_list variable below, and the next_free and attached_threads
    members of struct malloc_state objects.  No other locks must be
@@ -121,6 +124,20 @@ int __malloc_initialized = -1;
       else								      \
         ptr = arena_get2 ((size), NULL);				      \
   } while (0)
+
+//cgmin arena
+#define arena_get_group(ptr, size, group) do { \
+      ptr = thread_arena_group[group];						      \
+      arena_lock_group (ptr, size, group);						      \
+  } while (0)
+
+#define arena_lock_group(ptr, size,group) do {					      \
+      if (ptr)								      \
+        __libc_lock_lock (ptr->mutex);					      \
+      else								      \
+        ptr = arena_get2_group ((size), NULL,group);				      \
+  } while (0)
+
 
 /* find the heap and corresponding arena for a given ptr */
 
@@ -801,6 +818,76 @@ _int_new_arena (size_t size)
   return a;
 }
 
+static mstate
+_int_new_arena_group (size_t size,size_t group) //cgmin new arena group
+{
+  mstate a;
+  heap_info *h;
+  char *ptr;
+  unsigned long misalign;
+
+  h = new_heap (size + (sizeof (*h) + sizeof (*a) + MALLOC_ALIGNMENT),
+                mp_.top_pad);
+  if (!h)
+    {
+      /* Maybe size is too large to fit in a single heap.  So, just try
+         to create a minimally-sized arena and let _int_malloc() attempt
+         to deal with the large request via mmap_chunk().  */
+      h = new_heap (sizeof (*h) + sizeof (*a) + MALLOC_ALIGNMENT, mp_.top_pad);
+      if (!h)
+        return 0;
+    }
+  a = h->ar_ptr = (mstate) (h + 1);
+  malloc_init_state (a);
+  a->attached_threads = 1;
+  /*a->next = NULL;*/
+  a->system_mem = a->max_system_mem = h->size;
+
+  /* Set up the top chunk, with proper alignment. */
+  ptr = (char *) (a + 1);
+  misalign = (unsigned long) chunk2mem (ptr) & MALLOC_ALIGN_MASK;
+  if (misalign > 0)
+    ptr += MALLOC_ALIGNMENT - misalign;
+  top (a) = (mchunkptr) ptr;
+  set_head (top (a), (((char *) h + h->size) - ptr) | PREV_INUSE);
+
+  LIBC_PROBE (memory_arena_new, 2, a, size);
+  mstate replaced_arena = thread_arena_group[group];
+  thread_arena_group[group] = a;
+  __libc_lock_init (a->mutex);
+
+  __libc_lock_lock (list_lock);
+
+  /* Add the new arena to the global list.  */
+  a->next = main_arena.next;
+  /* FIXME: The barrier is an attempt to synchronize with read access
+     in reused_arena, which does not acquire list_lock while
+     traversing the list.  */
+  atomic_write_barrier ();
+  main_arena.next = a;
+
+  __libc_lock_unlock (list_lock);
+
+  __libc_lock_lock (free_list_lock);
+  detach_arena (replaced_arena);
+  __libc_lock_unlock (free_list_lock);
+
+  /* Lock this arena.  NB: Another thread may have been attached to
+     this arena because the arena is now accessible from the
+     main_arena.next list and could have been picked by reused_arena.
+     This can only happen for the last arena created (before the arena
+     limit is reached).  At this point, some arena has to be attached
+     to two threads.  We could acquire the arena lock before list_lock
+     to make it less likely that reused_arena picks this new arena,
+     but this could result in a deadlock with
+     __malloc_fork_lock_parent.  */
+
+  __libc_lock_lock (a->mutex);
+
+  return a;
+}
+
+
 
 /* Remove an arena from free_list.  */
 static mstate
@@ -834,6 +921,39 @@ get_free_list (void)
 
   return result;
 }
+
+static mstate
+get_free_list_group (size_t group) //cgmin get free list arena
+{
+  mstate replaced_arena = thread_arena_group[group];
+  mstate result = free_list;
+  if (result != NULL)
+    {
+      __libc_lock_lock (free_list_lock);
+      result = free_list;
+      if (result != NULL)
+	{
+	  free_list = result->next_free;
+
+	  /* The arena will be attached to this thread.  */
+	  assert (result->attached_threads == 0);
+	  result->attached_threads = 1;
+
+	  detach_arena (replaced_arena);
+	}
+      __libc_lock_unlock (free_list_lock);
+
+      if (result != NULL)
+        {
+          LIBC_PROBE (memory_arena_reuse_free_list, 1, result);
+          __libc_lock_lock (result->mutex);
+	  thread_arena_group[group] = result;
+        }
+    }
+
+  return result;
+}
+
 
 /* Remove the arena from the free list (if it is present).
    free_list_lock must have been acquired by the caller.  */
@@ -920,6 +1040,67 @@ out:
 }
 
 static mstate
+reused_arena_group (mstate avoid_arena,size_t group) //cgmin 
+{
+  mstate result;
+  /* FIXME: Access to next_to_use suffers from data races.  */
+  static mstate next_to_use;
+  if (next_to_use == NULL)
+    next_to_use = &main_arena;
+
+  /* Iterate over all arenas (including those linked from
+     free_list).  */
+  result = next_to_use;
+  do
+    {
+      if (!__libc_lock_trylock (result->mutex))
+        goto out;
+
+      /* FIXME: This is a data race, see _int_new_arena.  */
+      result = result->next;
+    }
+  while (result != next_to_use);
+
+  /* Avoid AVOID_ARENA as we have already failed to allocate memory
+     in that arena and it is currently locked.   */
+  if (result == avoid_arena)
+    result = result->next;
+
+  /* No arena available without contention.  Wait for the next in line.  */
+  LIBC_PROBE (memory_arena_reuse_wait, 3, &result->mutex, result, avoid_arena);
+  __libc_lock_lock (result->mutex);
+
+out:
+  /* Attach the arena to the current thread.  */
+  {
+    /* Update the arena thread attachment counters.   */
+    mstate replaced_arena = thread_arena_group[group];
+    __libc_lock_lock (free_list_lock);
+    detach_arena (replaced_arena);
+
+    /* We may have picked up an arena on the free list.  We need to
+       preserve the invariant that no arena on the free list has a
+       positive attached_threads counter (otherwise,
+       arena_thread_freeres cannot use the counter to determine if the
+       arena needs to be put on the free list).  We unconditionally
+       remove the selected arena from the free list.  The caller of
+       reused_arena checked the free list and observed it to be empty,
+       so the list is very short.  */
+    remove_from_free_list (result);
+
+    ++result->attached_threads;
+
+    __libc_lock_unlock (free_list_lock);
+  }
+
+  LIBC_PROBE (memory_arena_reuse, 2, result, avoid_arena);
+  thread_arena_group[group] = result;
+  next_to_use = result->next;
+
+  return result;
+}
+
+static mstate
 arena_get2 (size_t size, mstate avoid_arena)
 {
   mstate a;
@@ -969,6 +1150,58 @@ arena_get2 (size_t size, mstate avoid_arena)
   return a;
 }
 
+static mstate
+arena_get2_group (size_t size, mstate avoid_arena, size_t group) //cgmin
+{
+  mstate a;
+
+  static size_t narenas_limit;
+
+  a = get_free_list_group (group);
+  if (a == NULL)
+    {
+      /* Nothing immediately available, so generate a new arena.  */
+      if (narenas_limit == 0)
+        {
+          if (mp_.arena_max != 0)
+            narenas_limit = mp_.arena_max;
+          else if (narenas > mp_.arena_test)
+            {
+              int n = __get_nprocs ();
+
+              if (n >= 1)
+                narenas_limit = NARENAS_FROM_NCORES (n);
+              else
+                /* We have no information about the system.  Assume two
+                   cores.  */
+                narenas_limit = NARENAS_FROM_NCORES (2);
+            }
+        }
+    repeat:;
+      size_t n = narenas;
+      /* NB: the following depends on the fact that (size_t)0 - 1 is a
+         very large number and that the underflow is OK.  If arena_max
+         is set the value of arena_test is irrelevant.  If arena_test
+         is set but narenas is not yet larger or equal to arena_test
+         narenas_limit is 0.  There is no possibility for narenas to
+         be too big for the test to always fail since there is not
+         enough address space to create that many arenas.  */
+      if (__glibc_unlikely (n <= narenas_limit - 1))
+        {
+          if (catomic_compare_and_exchange_bool_acq (&narenas, n + 1, n))
+            goto repeat;
+          a = _int_new_arena_group (size,group);
+	  if (__glibc_unlikely (a == NULL))
+            catomic_decrement (&narenas);
+        }
+      else
+        a = reused_arena_group (avoid_arena,group);
+    }
+  return a;
+}
+
+
+
 /* If we don't have the main arena, then maybe the failure is due to running
    out of mmapped areas, so we can try allocating on the main arena.
    Otherwise, it is likely that sbrk() has failed and there is still a chance
@@ -1016,6 +1249,27 @@ __malloc_arena_thread_freeres (void)
 	}
       __libc_lock_unlock (free_list_lock);
     }
+
+  for (int i=0;i<arena_group_max;i++) //cgmin thread shutdown
+  {
+  mstate a = thread_arena_group[i];
+  thread_arena_group[i] = NULL;
+
+  if (a != NULL)
+    {
+      __libc_lock_lock (free_list_lock);
+      /* If this was the last attached thread for this arena, put the
+	 arena on the free list.  */
+      assert (a->attached_threads > 0);
+      if (--a->attached_threads == 0)
+	{
+	  a->next_free = free_list;
+	  free_list = a;
+	}
+      __libc_lock_unlock (free_list_lock);
+    }
+
+  }
 }
 
 /*

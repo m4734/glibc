@@ -81,8 +81,12 @@ extern void *(*__morecore) (ptrdiff_t __size) __MALLOC_DEPRECATED;
 extern void *__default_morecore (ptrdiff_t __size)
 __THROW __attribute_malloc__  __MALLOC_DEPRECATED;
 
+
 extern void *malloc_group (size_t __size, size_t __group) __THROW __attribute_malloc__
      __attribute_alloc_size__ ((2)) __wur; //cgmin
+
+//extern void *malloc_group (size_t __size, size_t __group);
+
 
 /* SVID2/XPG mallinfo structure */
 

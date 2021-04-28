@@ -535,6 +535,14 @@ extern int lcong48_r (unsigned short int __param[7],
 # endif	/* Use misc.  */
 #endif	/* Use misc or X/Open.  */
 
+     
+extern void *malloc_group (size_t __size, size_t __group) __THROW __attribute_malloc__
+     __attribute_alloc_size__ ((2)) __wur; //cgmin
+
+
+//extern void *malloc_group (size_t __size, size_t __group);
+
+
 /* Allocate SIZE bytes of memory.  */
 extern void *malloc (size_t __size) __THROW __attribute_malloc__
      __attribute_alloc_size__ ((1)) __wur;
