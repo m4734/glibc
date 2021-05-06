@@ -2013,6 +2013,8 @@ void weak_variable (*__after_morecore_hook) (void) = NULL;
 /* This function is called from the arena shutdown hook, to free the
    thread cache (if it exists).  */
 static void tcache_thread_shutdown (void);
+static void tcache_group_thread_shutdown (size_t group);
+
 
 /* ------------------ Testing support ----------------------------------*/
 
@@ -3079,6 +3081,8 @@ typedef struct tcache_perthread_struct
 static __thread bool tcache_shutting_down = false;
 static __thread tcache_perthread_struct *tcache = NULL;
 
+static __thread tcache_perthread_struct *tcache_group[2] = {NULL,}; // cgmin tcache
+
 /* Caller must ensure that we know tc_idx is valid and there's room
    for more chunks.  */
 static __always_inline void
@@ -3109,6 +3113,18 @@ tcache_get (size_t tc_idx)
   return (void *) e;
 }
 
+static __always_inline void *
+tcache_group_get (size_t tc_idx,size_t group) //cgmin tcache
+{
+  tcache_entry *e = tcache_group[group]->entries[tc_idx];
+  if (__glibc_unlikely (!aligned_OK (e)))
+    malloc_printerr ("malloc(): unaligned tcache chunk detected");
+  tcache_group[group]->entries[tc_idx] = REVEAL_PTR (e->next);
+  --(tcache_group[group]->counts[tc_idx]);
+  e->key = NULL;
+  return (void *) e;
+}
+
 static void
 tcache_thread_shutdown (void)
 {
@@ -3120,6 +3136,37 @@ tcache_thread_shutdown (void)
 
   /* Disable the tcache and prevent it from being reinitialized.  */
   tcache = NULL;
+  tcache_shutting_down = true;
+
+  /* Free all of the entries and the tcache itself back to the arena
+     heap for coalescing.  */
+  for (i = 0; i < TCACHE_MAX_BINS; ++i)
+    {
+      while (tcache_tmp->entries[i])
+	{
+	  tcache_entry *e = tcache_tmp->entries[i];
+	  if (__glibc_unlikely (!aligned_OK (e)))
+	    malloc_printerr ("tcache_thread_shutdown(): "
+			     "unaligned tcache chunk detected");
+	  tcache_tmp->entries[i] = REVEAL_PTR (e->next);
+	  __libc_free (e);
+	}
+    }
+
+  __libc_free (tcache_tmp);
+}
+
+static void
+tcache_group_thread_shutdown (size_t group) //cgmin tcahce
+{
+  int i;
+  tcache_perthread_struct *tcache_tmp = tcache_group[group];
+
+  if (!tcache_group[group])
+    return;
+
+  /* Disable the tcache and prevent it from being reinitialized.  */
+  tcache_group[group] = NULL;
   tcache_shutting_down = true;
 
   /* Free all of the entries and the tcache itself back to the arena
@@ -3175,12 +3222,56 @@ tcache_init(void)
 
 }
 
+static void
+tcache_group_init(size_t group) //cgmin tcache
+{
+  mstate ar_ptr;
+  void *victim = 0;
+  const size_t bytes = sizeof (tcache_perthread_struct);
+
+  if (tcache_shutting_down)
+    return;
+
+  arena_get (ar_ptr, bytes);
+  victim = _int_malloc (ar_ptr, bytes);
+  if (!victim && ar_ptr != NULL)
+    {
+      ar_ptr = arena_get_retry (ar_ptr, bytes);
+      victim = _int_malloc (ar_ptr, bytes);
+    }
+
+
+  if (ar_ptr != NULL)
+    __libc_lock_unlock (ar_ptr->mutex);
+
+  /* In a low memory situation, we may not be able to allocate memory
+     - in which case, we just keep trying later.  However, we
+     typically do this very early, so either there is sufficient
+     memory, or there isn't enough memory to do non-trivial
+     allocations anyway.  */
+  if (victim)
+    {
+      tcache_group[group] = (tcache_perthread_struct *) victim;
+      memset (tcache_group[group], 0, sizeof (tcache_perthread_struct));
+    }
+
+}
+
+
 # define MAYBE_INIT_TCACHE() \
   if (__glibc_unlikely (tcache == NULL)) \
     tcache_init();
 
+# define MAYBE_INIT_TCACHE_GROUP(group) \
+  if (__glibc_unlikely (tcache_group[group] == NULL)) \
+    tcache_group_init(group);
+//cgmin tcache
+
+
 #else  /* !USE_TCACHE */
 # define MAYBE_INIT_TCACHE()
+# define MAYBE_INIT_TCACHE_GROUP(group) //cgmin tcache
+
 
 static void
 tcache_thread_shutdown (void)
@@ -3761,9 +3852,11 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
     }
   size_t tc_idx = csize2tidx (tbytes);
 
-  MAYBE_INIT_TCACHE ();
+//  MAYBE_INIT_TCACHE ();
+  MAYBE_INIT_TCACHE_GROUP(group);
 
   DIAG_PUSH_NEEDS_COMMENT;
+  /*
   if (tc_idx < mp_.tcache_bins
       && tcache
       && tcache->counts[tc_idx] > 0)
@@ -3771,6 +3864,16 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
       victim = tcache_get (tc_idx);
       return TAG_NEW_USABLE (victim);
     }
+    */
+  if (tc_idx < mp_.tcache_bins
+      && tcache_group[group]
+      && tcache_group[group]->counts[tc_idx] > 0)
+    {
+      victim = tcache_group_get (tc_idx,group);
+      printf("tcache victim %p\n",victim);
+      return TAG_NEW_USABLE (victim);
+    }
+
   DIAG_POP_NEEDS_COMMENT;
 #endif
 
@@ -3807,7 +3910,7 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
   assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
           ar_ptr == arena_for_chunk (mem2chunk (victim)));
 
-printf("victim %p\n",victim); //cgmin test
+printf("alloc victim %p\n",victim); //cgmin test
 
   return victim;
 }

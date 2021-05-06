@@ -1232,6 +1232,8 @@ __malloc_arena_thread_freeres (void)
      the thread arena, so do this before we put the arena on the free
      list.  */
   tcache_thread_shutdown ();
+  tcache_group_thread_shutdown(0);
+  tcache_group_thread_shutdown(1);
 
   mstate a = thread_arena;
   thread_arena = NULL;
