@@ -774,6 +774,8 @@ _int_new_arena (size_t size)
   /*a->next = NULL;*/
   a->system_mem = a->max_system_mem = h->size;
 
+a->group = -1; //cgmin group
+
   /* Set up the top chunk, with proper alignment. */
   ptr = (char *) (a + 1);
   misalign = (unsigned long) chunk2mem (ptr) & MALLOC_ALIGN_MASK;
@@ -842,6 +844,8 @@ _int_new_arena_group (size_t size,size_t group) //cgmin new arena group
   a->attached_threads = 1;
   /*a->next = NULL;*/
   a->system_mem = a->max_system_mem = h->size;
+
+a->group = group; //cgmin group
 
   /* Set up the top chunk, with proper alignment. */
   ptr = (char *) (a + 1);

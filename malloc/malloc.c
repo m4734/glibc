@@ -1850,6 +1850,8 @@ struct malloc_state
   /* Memory allocated from the system in this arena.  */
   INTERNAL_SIZE_T system_mem;
   INTERNAL_SIZE_T max_system_mem;
+
+  int group;//cgmin group
 };
 
 struct malloc_par
@@ -1900,6 +1902,7 @@ static struct malloc_state main_arena =
   .mutex = _LIBC_LOCK_INITIALIZER,
   .next = &main_arena,
   .attached_threads = 1
+	  ,.group = -1 //cgmin group
 };
 
 /* These variables are used for undumping support.  Chunked are marked
@@ -3099,6 +3102,20 @@ tcache_put (mchunkptr chunk, size_t tc_idx)
   ++(tcache->counts[tc_idx]);
 }
 
+static __always_inline void
+tcache_group_put (mchunkptr chunk, size_t tc_idx,size_t group) //cgmin tcache
+{
+  tcache_entry *e = (tcache_entry *) chunk2mem (chunk);
+
+  /* Mark this chunk as "in the tcache" so the test in _int_free will
+     detect a double free.  */
+  e->key = tcache_group[group];
+
+  e->next = PROTECT_PTR (&e->next, tcache_group[group]->entries[tc_idx]);
+  tcache_group[group]->entries[tc_idx] = e;
+  ++(tcache_group[group]->counts[tc_idx]);
+}
+
 /* Caller must ensure that we know tc_idx is valid and there's
    available chunks to remove.  */
 static __always_inline void *
@@ -3225,6 +3242,9 @@ tcache_init(void)
 static void
 tcache_group_init(size_t group) //cgmin tcache
 {
+
+//tcache arena???
+//printf("tcahce group init %lu\n",group);
   mstate ar_ptr;
   void *victim = 0;
   const size_t bytes = sizeof (tcache_perthread_struct);
@@ -3232,7 +3252,7 @@ tcache_group_init(size_t group) //cgmin tcache
   if (tcache_shutting_down)
     return;
 
-  arena_get (ar_ptr, bytes);
+  arena_get_group (ar_ptr, bytes,group);
   victim = _int_malloc (ar_ptr, bytes);
   if (!victim && ar_ptr != NULL)
     {
@@ -3397,7 +3417,15 @@ __libc_free (void *mem)
     }
   else
     {
+	    int group = arena_for_chunk(p)->group; //cgmin tcache
+	    if (group >= 0)
+	    {
+		    MAYBE_INIT_TCACHE_GROUP(group);
+	    }
+	    else
+	    {
       MAYBE_INIT_TCACHE ();
+	    }
 
 //malloc_printerr("wwwwefefef222\n"); //cgmin test
       ar_ptr = arena_for_chunk (p);
@@ -3824,10 +3852,10 @@ void *
 __libc_malloc_group(size_t bytes, size_t group) //cgmin
 {
 
-	/*
-	printf("byte %lu group %lu\n",bytes,group);
-	return NULL;
-*/
+	
+	printf("malloc_group byte %lu group %lu\n",bytes,group);
+//	return NULL;
+
 	if (group >= arena_group_max)
 	{
 		printf("group %lu >= arena_group_max %lu\n",group,arena_group_max);
@@ -3941,6 +3969,16 @@ _int_malloc (mstate av, size_t bytes)
 
 #if USE_TCACHE
   size_t tcache_unsorted_count;	    /* count of unsorted chunks processed */
+
+//cgmin tcache
+
+	      tcache_perthread_struct* tcachep;
+	      int group = av->group;
+	      if (group >= 0)
+		      tcachep = tcache_group[group];
+	      else
+		      tcachep = tcache;
+
 #endif
 
   /*
@@ -4012,6 +4050,36 @@ _int_malloc (mstate av, size_t bytes)
 #if USE_TCACHE
 	      /* While we're here, if we see other chunks of the same size,
 		 stash them in the tcache.  */
+
+	      //cgmin tcache
+
+	      size_t tc_idx = csize2tidx (nb);
+	      if (tcachep && tc_idx < mp_.tcache_bins)
+		{
+		  mchunkptr tc_victim;
+
+		  /* While bin not empty and tcache not full, copy chunks.  */
+		  while (tcachep->counts[tc_idx] < mp_.tcache_count
+			 && (tc_victim = *fb) != NULL)
+		    {
+		      if (__glibc_unlikely (misaligned_chunk (tc_victim)))
+			malloc_printerr ("malloc(): unaligned fastbin chunk detected 3");
+		      if (SINGLE_THREAD_P)
+			*fb = REVEAL_PTR (tc_victim->fd);
+		      else
+			{
+			  REMOVE_FB (fb, pp, tc_victim);
+			  if (__glibc_unlikely (tc_victim == NULL))
+			    break;
+			}
+		      if (group >= 0)
+			      tcache_group_put(tc_victim,tc_idx,group);
+		      else
+		      tcache_put (tc_victim, tc_idx);
+		    }
+		}
+
+#if 0
 	      size_t tc_idx = csize2tidx (nb);
 	      if (tcache && tc_idx < mp_.tcache_bins)
 		{
@@ -4034,6 +4102,7 @@ _int_malloc (mstate av, size_t bytes)
 		      tcache_put (tc_victim, tc_idx);
 		    }
 		}
+#endif
 #endif
 	      void *p = chunk2mem (victim);
 	      alloc_perturb (p, bytes);
@@ -4070,6 +4139,34 @@ _int_malloc (mstate av, size_t bytes)
 #if USE_TCACHE
 	  /* While we're here, if we see other chunks of the same size,
 	     stash them in the tcache.  */
+
+//cgmin tcache
+
+	  size_t tc_idx = csize2tidx (nb);
+	  if (tcachep && tc_idx < mp_.tcache_bins)
+	    {
+	      mchunkptr tc_victim;
+
+	      /* While bin not empty and tcache not full, copy chunks over.  */
+	      while (tcachep->counts[tc_idx] < mp_.tcache_count
+		     && (tc_victim = last (bin)) != bin)
+		{
+		  if (tc_victim != 0)
+		    {
+		      bck = tc_victim->bk;
+		      set_inuse_bit_at_offset (tc_victim, nb);
+		      if (av != &main_arena)
+			set_non_main_arena (tc_victim);
+		      bin->bk = bck;
+		      bck->fd = bin;
+if (group >= 0)
+	tcache_group_put(tc_victim,tc_idx,group);
+else
+		      tcache_put (tc_victim, tc_idx);
+	            }
+		}
+	    }
+#if 0
 	  size_t tc_idx = csize2tidx (nb);
 	  if (tcache && tc_idx < mp_.tcache_bins)
 	    {
@@ -4092,6 +4189,7 @@ _int_malloc (mstate av, size_t bytes)
 	            }
 		}
 	    }
+#endif
 #endif
           void *p = chunk2mem (victim);
           alloc_perturb (p, bytes);
@@ -4133,7 +4231,8 @@ _int_malloc (mstate av, size_t bytes)
 #if USE_TCACHE
   INTERNAL_SIZE_T tcache_nb = 0;
   size_t tc_idx = csize2tidx (nb);
-  if (tcache && tc_idx < mp_.tcache_bins)
+//  if (tcache && tc_idx < mp_.tcache_bins)
+  if (tcachep && tc_idx < mp_.tcache_bins)
     tcache_nb = nb;
   int return_cached = 0;
 
@@ -4215,6 +4314,7 @@ _int_malloc (mstate av, size_t bytes)
 #if USE_TCACHE
 	      /* Fill cache first, return to user only if cache fills.
 		 We may return one of these chunks later.  */
+#if 0
 	      if (tcache_nb
 		  && tcache->counts[tc_idx] < mp_.tcache_count)
 		{
@@ -4224,6 +4324,22 @@ _int_malloc (mstate av, size_t bytes)
 		}
 	      else
 		{
+#endif
+
+	      if (tcache_nb
+		  && tcachep->counts[tc_idx] < mp_.tcache_count)
+		{
+			if (group >= 0)
+				tcache_group_put (victim,tc_idx,group);
+			else
+		  tcache_put (victim, tc_idx);
+		  return_cached = 1;
+		  continue;
+		}
+	      else
+		{
+
+
 #endif
               check_malloced_chunk (av, victim, nb);
               void *p = chunk2mem (victim);
@@ -4310,6 +4426,9 @@ _int_malloc (mstate av, size_t bytes)
 	  && mp_.tcache_unsorted_limit > 0
 	  && tcache_unsorted_count > mp_.tcache_unsorted_limit)
 	{
+		if (group >= 0) //cgmin tcache
+			return tcache_group_get(tc_idx,group);
+		else
 	  return tcache_get (tc_idx);
 	}
 #endif
@@ -4323,6 +4442,9 @@ _int_malloc (mstate av, size_t bytes)
       /* If all the small chunks we found ended up cached, return one now.  */
       if (return_cached)
 	{
+		if (group >= 0) //cgmin tcache
+			return tcache_group_get(tc_idx,group);
+		else
 	  return tcache_get (tc_idx);
 	}
 #endif
@@ -4601,6 +4723,56 @@ _int_free (mstate av, mchunkptr p, int have_lock)
 
 #if USE_TCACHE
   {
+	  //cgmin tcache
+tcache_perthread_struct* tcachep;
+int group = arena_for_chunk(p)->group;
+if (group >= 0)
+	tcachep = tcache_group[group];
+else
+	tcachep = tcache;
+
+    size_t tc_idx = csize2tidx (size);
+    if (tcachep != NULL && tc_idx < mp_.tcache_bins)
+      {
+	/* Check to see if it's already in the tcache.  */
+	tcache_entry *e = (tcache_entry *) chunk2mem (p);
+
+	/* This test succeeds on double free.  However, we don't 100%
+	   trust it (it also matches random payload data at a 1 in
+	   2^<size_t> chance), so verify it's not an unlikely
+	   coincidence before aborting.  */
+	if (__glibc_unlikely (e->key == tcachep))
+	  {
+	    tcache_entry *tmp;
+	    size_t cnt = 0;
+	    LIBC_PROBE (memory_tcache_double_free, 2, e, tc_idx);
+	    for (tmp = tcachep->entries[tc_idx];
+		 tmp;
+		 tmp = REVEAL_PTR (tmp->next), ++cnt)
+	      {
+		if (cnt >= mp_.tcache_count)
+		  malloc_printerr ("free(): too many chunks detected in tcache");
+		if (__glibc_unlikely (!aligned_OK (tmp)))
+		  malloc_printerr ("free(): unaligned chunk detected in tcache 2");
+		if (tmp == e)
+		  malloc_printerr ("free(): double free detected in tcache 2");
+		/* If we get here, it was a coincidence.  We've wasted a
+		   few cycles, but don't abort.  */
+	      }
+	  }
+
+	if (tcachep->counts[tc_idx] < mp_.tcache_count)
+	  {
+		  if (group >= 0)
+			  tcache_group_put(p,tc_idx,group);
+		  else
+	    tcache_put (p, tc_idx);
+	    return;
+	  }
+      }
+
+
+#if 0
     size_t tc_idx = csize2tidx (size);
     if (tcache != NULL && tc_idx < mp_.tcache_bins)
       {
@@ -4637,6 +4809,9 @@ _int_free (mstate av, mchunkptr p, int have_lock)
 	    return;
 	  }
       }
+#endif
+
+
   }
 #endif
 
