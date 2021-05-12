@@ -1223,7 +1223,10 @@ arena_get_retry (mstate ar_ptr, size_t bytes)
   else
     {
       __libc_lock_unlock (ar_ptr->mutex);
-      ar_ptr = arena_get2 (bytes, ar_ptr);
+      if (ar_ptr->group >= 0) //cgmin group
+	      ar_ptr = arena_get2_group(bytes,ar_ptr,ar_ptr->group);
+      else
+	      ar_ptr = arena_get2 (bytes, ar_ptr);
     }
 
   return ar_ptr;
