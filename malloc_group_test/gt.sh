@@ -1,0 +1,1 @@
+gcc -L/home/cgmin/20210402/glibc/build/install/lib -I/home/cgmin/20240402/glibc/build/install/include -Wl,--rpath=/home/cgmin/20210402/glibc/build/install/lib -Wl,--dynamic-linker=/home/cgmin/20210402/glibc/build/install/lib/ld-linux-x86-64.so.2 gt.c
