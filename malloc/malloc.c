@@ -3667,7 +3667,7 @@ __libc_valloc (size_t bytes)
   void *address = RETURN_ADDRESS (0);
   size_t pagesize = GLRO (dl_pagesize);
   p = _mid_memalign (pagesize, bytes, address);
-  printf("valloc p %p\n",p); //cgmin test
+//  printf("valloc p %p\n",p); //cgmin test
   return TAG_NEW_USABLE (p);
 }
 
@@ -3853,23 +3853,29 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
 {
 
 	
-	printf("malloc_group byte %lu group %lu\n",bytes,group);
+//	printf("malloc_group byte %lu group %lu\n",bytes,group); //cgmin test
 //	return NULL;
-
+//printf("group %lu\n",group); //cgmin test
+//printf("bytes %lu\n",bytes);
+//write(1,"ggg",3);
 	if (group >= arena_group_max)
 	{
 		printf("group %lu >= arena_group_max %lu\n",group,arena_group_max);
 		return NULL;
 	}
+//write(1,"ggg7",4);
   mstate ar_ptr;
   void *victim;
 
   _Static_assert (PTRDIFF_MAX <= SIZE_MAX / 2,
                   "PTRDIFF_MAX is not more than half of SIZE_MAX");
+/*
   void *(*hook) (size_t, const void *)
     = atomic_forced_read (__malloc_hook);
   if (__builtin_expect (hook != NULL, 0))
     return (*hook)(bytes, RETURN_ADDRESS (0));
+*/
+//write(1,"ggg8",4);
 #if USE_TCACHE
   /* int_free also calls request2size, be careful to not pad twice.  */
   size_t tbytes;
@@ -3882,7 +3888,7 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
 
 //  MAYBE_INIT_TCACHE ();
   MAYBE_INIT_TCACHE_GROUP(group);
-
+//write(1,"ggg5",4);
   DIAG_PUSH_NEEDS_COMMENT;
   /*
   if (tc_idx < mp_.tcache_bins
@@ -3897,15 +3903,16 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
       && tcache_group[group]
       && tcache_group[group]->counts[tc_idx] > 0)
     {
+//write(1,"ggg6",4);
       victim = tcache_group_get (tc_idx,group);
-      printf("tcache victim %p\n",victim);
+//      printf("tcache victim %p\n",victim); //cgmin test
       return TAG_NEW_USABLE (victim);
     }
 
   DIAG_POP_NEEDS_COMMENT;
 #endif
 
-
+//write(1,"ggg7",4);
 //cgmin malloc group arena
 /*
   if (SINGLE_THREAD_P)
@@ -3916,6 +3923,7 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
       return victim;
     }
 */
+//printf("group %lu\n",group); //cgmin test
   arena_get_group (ar_ptr, bytes,group);
 
 
@@ -3925,6 +3933,8 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
      before.  */
   if (!victim && ar_ptr != NULL)
     {
+//write(1,"ggg2",4);
+
       LIBC_PROBE (memory_malloc_retry, 1, bytes);
       ar_ptr = arena_get_retry (ar_ptr, bytes);
       victim = _int_malloc (ar_ptr, bytes);
@@ -3938,7 +3948,7 @@ __libc_malloc_group(size_t bytes, size_t group) //cgmin
   assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
           ar_ptr == arena_for_chunk (mem2chunk (victim)));
 
-printf("alloc victim %p\n",victim); //cgmin test
+//printf("alloc victim %p\n",victim); //cgmin test
 
   return victim;
 }

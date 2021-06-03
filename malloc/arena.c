@@ -1157,6 +1157,8 @@ arena_get2 (size_t size, mstate avoid_arena)
 static mstate
 arena_get2_group (size_t size, mstate avoid_arena, size_t group) //cgmin
 {
+//printf("arena get group %lu\n",group); //cgmin test
+//write(1,"ggg4",4);
   mstate a;
 
   static size_t narenas_limit;
@@ -1164,6 +1166,7 @@ arena_get2_group (size_t size, mstate avoid_arena, size_t group) //cgmin
   a = get_free_list_group (group);
   if (a == NULL)
     {
+//write(1,"ggg3",4);
       /* Nothing immediately available, so generate a new arena.  */
       if (narenas_limit == 0)
         {

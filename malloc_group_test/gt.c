@@ -1,45 +1,54 @@
 #include<stdio.h>
-//#include<gnu/libc-version.h>
+#include<gnu/libc-version.h>
+#include <stdlib.h>
 #include"malloc.h"
+
+#define N 10000
+
+void* aaa[N];
+
+void* bbb[N];
+
 int main()
 {
-//	printf("%s\n",gnu_get_libc_version());
+	printf("%s\n",gnu_get_libc_version());
 //	void* aaa = NULL;
 //	aaa = valloc(1024);
 //	printf("%p\n",aaa);
 //	free(aaa);
+malloc_group(1024,5);
 
-	void* a1 = (void*)malloc(1024);
-//	void* v1 = (void*)valloc(1024);
-	void* b1 = (void*)malloc_group(1024,0);
-	void* c1 = (void*)malloc_group(1024,1);
-	void* b2 = (void*)malloc_group(1024,0);
-	void* c2 = (void*)malloc_group(1024,1);
 
-//	void* c0 = (void*)calloc(5,1024);
+int i,j,k;
+for (k=0;k<5;k++)
+{
+for (i=0;i<N;i++)
+{
+	aaa[i] = malloc_group(1024,1);
+	bbb[i] = malloc_group(1024,0);
+}
 
-	printf("a1 %p\n",a1);
-	printf("b1 %p\n",b1);
-	printf("c1 %p\n",c1);
-	printf("b2 %p\n",b2);
-	printf("c2 %p\n",c2);
+for (i=0;i<10;i++)
+{
+	printf("%d %lld %p / %d %lld %p\n",i,(unsigned long long)aaa[i]/4096,aaa[i],i,(unsigned long long)bbb[i]/4096,bbb[i]);
 
-//	printf("v1 %p\n",v1);
+}
 
-//	printf("c0 %p\n",c0);
+for (i=0;i<N;i++)
+{
+for (j=0;j<N;j++)
+{
+if ((unsigned long long)aaa[i]/4096 == (unsigned long long)bbb[j]/4096)
+	printf("%d %p - %d %p\n",i,aaa[i],j,bbb[j]);
+}
+}
 
-	/*
-	free(b2);
-	free(c2);
-
-	b2 = malloc_group(1024,1);
-	c2 = malloc_group(1024,0);
-
-	printf("b3 %p\n",b2);
-	printf("c3 %p\n",c2);
-*/
-
-	scanf("%d");
-
+for (i=0;i<N;i++)
+{
+	free(aaa[i]);
+	free(bbb[i]);
+}
+}
+scanf("%d");
 	return 0;
 }
