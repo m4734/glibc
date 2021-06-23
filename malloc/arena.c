@@ -73,7 +73,7 @@ extern int sanity_check_heap_info_alignment[(sizeof (heap_info)
 
 static __thread mstate thread_arena attribute_tls_model_ie;
 
-static __thread mstate thread_arena_group[2] attribute_tls_model_ie; //cgmin thread arena
+static __thread mstate thread_arena_group[2] attribute_tls_model_ie; //cgmin thread arena i will not use group 0
 static size_t arena_group_max=2;
 
 /* Arena free list.  free_list_lock synchronizes access to the
@@ -774,7 +774,7 @@ _int_new_arena (size_t size)
   /*a->next = NULL;*/
   a->system_mem = a->max_system_mem = h->size;
 
-a->group = -1; //cgmin group
+a->group = 0; //cgmin group
 
   /* Set up the top chunk, with proper alignment. */
   ptr = (char *) (a + 1);
@@ -929,6 +929,8 @@ get_free_list (void)
 static mstate
 get_free_list_group (size_t group) //cgmin get free list arena
 {
+if (group == 0)
+return get_free_list();
   mstate replaced_arena = thread_arena_group[group];
   mstate result = free_list;
   if (result != NULL)
@@ -1046,6 +1048,8 @@ out:
 static mstate
 reused_arena_group (mstate avoid_arena,size_t group) //cgmin 
 {
+if (group == 0)
+	return reused_arena(avoid_arena);
   mstate result;
   /* FIXME: Access to next_to_use suffers from data races.  */
   static mstate next_to_use;
@@ -1159,6 +1163,10 @@ arena_get2_group (size_t size, mstate avoid_arena, size_t group) //cgmin
 {
 //printf("arena get group %lu\n",group); //cgmin test
 //write(1,"ggg4",4);
+
+if (group == 0)
+	return arena_get2(size,avoid_arena);
+
   mstate a;
 
   static size_t narenas_limit;
@@ -1226,10 +1234,10 @@ arena_get_retry (mstate ar_ptr, size_t bytes)
   else
     {
       __libc_lock_unlock (ar_ptr->mutex);
-      if (ar_ptr->group >= 0) //cgmin group
+//      if (ar_ptr->group > 0) //cgmin group
 	      ar_ptr = arena_get2_group(bytes,ar_ptr,ar_ptr->group);
-      else
-	      ar_ptr = arena_get2 (bytes, ar_ptr);
+  //    else
+//	      ar_ptr = arena_get2 (bytes, ar_ptr);
     }
 
   return ar_ptr;

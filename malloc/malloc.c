@@ -1902,7 +1902,7 @@ static struct malloc_state main_arena =
   .mutex = _LIBC_LOCK_INITIALIZER,
   .next = &main_arena,
   .attached_threads = 1
-	  ,.group = -1 //cgmin group
+	  ,.group = 0 //cgmin group
 };
 
 /* These variables are used for undumping support.  Chunked are marked
@@ -3105,6 +3105,8 @@ tcache_put (mchunkptr chunk, size_t tc_idx)
 static __always_inline void
 tcache_group_put (mchunkptr chunk, size_t tc_idx,size_t group) //cgmin tcache
 {
+if (group == 0)
+	return tcache_put(chunk,tc_idx);
   tcache_entry *e = (tcache_entry *) chunk2mem (chunk);
 
   /* Mark this chunk as "in the tcache" so the test in _int_free will
@@ -3133,6 +3135,8 @@ tcache_get (size_t tc_idx)
 static __always_inline void *
 tcache_group_get (size_t tc_idx,size_t group) //cgmin tcache
 {
+if (group == 0)
+	return tcache_get(tc_idx);
   tcache_entry *e = tcache_group[group]->entries[tc_idx];
   if (__glibc_unlikely (!aligned_OK (e)))
     malloc_printerr ("malloc(): unaligned tcache chunk detected");
@@ -3245,6 +3249,10 @@ tcache_group_init(size_t group) //cgmin tcache
 
 //tcache arena???
 //printf("tcahce group init %lu\n",group);
+
+if (group == 0)
+	return;
+
   mstate ar_ptr;
   void *victim = 0;
   const size_t bytes = sizeof (tcache_perthread_struct);
@@ -3418,7 +3426,7 @@ __libc_free (void *mem)
   else
     {
 	    int group = arena_for_chunk(p)->group; //cgmin tcache
-	    if (group >= 0)
+	    if (group > 0)
 	    {
 		    MAYBE_INIT_TCACHE_GROUP(group);
 	    }
@@ -3460,7 +3468,9 @@ __libc_realloc (void *oldmem, size_t bytes)
 
   /* realloc of null is supposed to be same as malloc */
   if (oldmem == 0)
+{
     return __libc_malloc (bytes);
+}
 
 #ifdef USE_MTAG
   /* Perform a quick check to ensure that the pointer's tag matches the
@@ -3473,12 +3483,24 @@ __libc_realloc (void *oldmem, size_t bytes)
   /* its size */
   const INTERNAL_SIZE_T oldsize = chunksize (oldp);
 
+int group = arena_for_chunk(oldp)->group; //cgmin realloc
   if (chunk_is_mmapped (oldp))
     ar_ptr = NULL;
   else
     {
-      MAYBE_INIT_TCACHE ();
+
+
+
       ar_ptr = arena_for_chunk (oldp);
+
+if (group > 0) //cgmin
+{
+	MAYBE_INIT_TCACHE_GROUP(group);
+}
+else
+{
+      MAYBE_INIT_TCACHE ();
+}
     }
 
   /* Little security check which won't hurt performance: the allocator
@@ -3505,7 +3527,11 @@ __libc_realloc (void *oldmem, size_t bytes)
       if (DUMPED_MAIN_ARENA_CHUNK (oldp))
 	{
 	  /* Must alloc, copy, free. */
-	  void *newmem = __libc_malloc (bytes);
+	  void *newmem;
+//if (group >= 0) //cgmin
+	newmem = __libc_malloc_group(bytes,group);
+//else
+//newmem = __libc_malloc (bytes);
 	  if (newmem == 0)
 	    return NULL;
 	  /* Copy as many bytes as are available from the old chunk
@@ -3538,7 +3564,10 @@ __libc_realloc (void *oldmem, size_t bytes)
         return oldmem;                         /* do nothing */
 
       /* Must alloc, copy, free. */
-      newmem = __libc_malloc (bytes);
+//if (group >= 0) //cgmin
+	newmem = __libc_malloc_group(bytes,group);
+//else
+//      newmem = __libc_malloc (bytes);
       if (newmem == 0)
         return 0;              /* propagate failure */
 
@@ -3568,7 +3597,7 @@ __libc_realloc (void *oldmem, size_t bytes)
     {
       /* Try harder to allocate memory in other arenas.  */
       LIBC_PROBE (memory_realloc_retry, 2, bytes, oldmem);
-      newp = __libc_malloc (bytes);
+      newp = __libc_malloc_group (bytes,group); //cgmin realloc
       if (newp != NULL)
         {
 	  size_t sz = CHUNK_AVAILABLE_SIZE (oldp) - CHUNK_HDR_SZ;
@@ -3851,7 +3880,8 @@ __libc_calloc (size_t n, size_t elem_size)
 void *
 __libc_malloc_group(size_t bytes, size_t group) //cgmin
 {
-
+if (group == 0)
+	return __libc_malloc(bytes);
 	
 //	printf("malloc_group byte %lu group %lu\n",bytes,group); //cgmin test
 //	return NULL;
@@ -3984,7 +4014,7 @@ _int_malloc (mstate av, size_t bytes)
 
 	      tcache_perthread_struct* tcachep;
 	      int group = av->group;
-	      if (group >= 0)
+	      if (group > 0)
 		      tcachep = tcache_group[group];
 	      else
 		      tcachep = tcache;
@@ -4082,10 +4112,10 @@ _int_malloc (mstate av, size_t bytes)
 			  if (__glibc_unlikely (tc_victim == NULL))
 			    break;
 			}
-		      if (group >= 0)
+//		      if (group >= 0)
 			      tcache_group_put(tc_victim,tc_idx,group);
-		      else
-		      tcache_put (tc_victim, tc_idx);
+//		      else
+//		      tcache_put (tc_victim, tc_idx);
 		    }
 		}
 
@@ -4169,10 +4199,10 @@ _int_malloc (mstate av, size_t bytes)
 			set_non_main_arena (tc_victim);
 		      bin->bk = bck;
 		      bck->fd = bin;
-if (group >= 0)
+//if (group >= 0)
 	tcache_group_put(tc_victim,tc_idx,group);
-else
-		      tcache_put (tc_victim, tc_idx);
+//else
+//		      tcache_put (tc_victim, tc_idx);
 	            }
 		}
 	    }
@@ -4339,10 +4369,10 @@ else
 	      if (tcache_nb
 		  && tcachep->counts[tc_idx] < mp_.tcache_count)
 		{
-			if (group >= 0)
+//			if (group >= 0)
 				tcache_group_put (victim,tc_idx,group);
-			else
-		  tcache_put (victim, tc_idx);
+//			else
+//		  tcache_put (victim, tc_idx);
 		  return_cached = 1;
 		  continue;
 		}
@@ -4436,10 +4466,10 @@ else
 	  && mp_.tcache_unsorted_limit > 0
 	  && tcache_unsorted_count > mp_.tcache_unsorted_limit)
 	{
-		if (group >= 0) //cgmin tcache
+//		if (group >= 0) //cgmin tcache
 			return tcache_group_get(tc_idx,group);
-		else
-	  return tcache_get (tc_idx);
+//		else
+//	  return tcache_get (tc_idx);
 	}
 #endif
 
@@ -4452,10 +4482,10 @@ else
       /* If all the small chunks we found ended up cached, return one now.  */
       if (return_cached)
 	{
-		if (group >= 0) //cgmin tcache
+//		if (group >= 0) //cgmin tcache
 			return tcache_group_get(tc_idx,group);
-		else
-	  return tcache_get (tc_idx);
+//		else
+//	  return tcache_get (tc_idx);
 	}
 #endif
 
@@ -4736,7 +4766,7 @@ _int_free (mstate av, mchunkptr p, int have_lock)
 	  //cgmin tcache
 tcache_perthread_struct* tcachep;
 int group = arena_for_chunk(p)->group;
-if (group >= 0)
+if (group > 0)
 	tcachep = tcache_group[group];
 else
 	tcachep = tcache;
@@ -4773,10 +4803,10 @@ else
 
 	if (tcachep->counts[tc_idx] < mp_.tcache_count)
 	  {
-		  if (group >= 0)
+//		  if (group >= 0)
 			  tcache_group_put(p,tc_idx,group);
-		  else
-	    tcache_put (p, tc_idx);
+//		  else
+//	    tcache_put (p, tc_idx);
 	    return;
 	  }
       }
@@ -5165,6 +5195,8 @@ _int_realloc(mstate av, mchunkptr oldp, INTERNAL_SIZE_T oldsize,
   mchunkptr        remainder;       /* extra space at end of newp */
   unsigned long    remainder_size;  /* its size */
 
+//	    int group = arena_for_chunk(oldp)->group; //cgmin realloc
+
   /* oldmem size */
   if (__builtin_expect (chunksize_nomask (oldp) <= CHUNK_HDR_SZ, 0)
       || __builtin_expect (oldsize >= av->system_mem, 0))
@@ -5216,6 +5248,8 @@ _int_realloc(mstate av, mchunkptr oldp, INTERNAL_SIZE_T oldsize,
       else
         {
           newmem = _int_malloc (av, nb - MALLOC_ALIGN_MASK);
+//          newmem = _int_malloc_group (av, nb - MALLOC_ALIGN_MASK,group); //cgmin realloc
+
           if (newmem == 0)
             return 0; /* propagate failure */
 
