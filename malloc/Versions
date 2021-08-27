@@ -13,6 +13,7 @@ libc {
 
 #cgmin
     __libc_malloc_group;
+    __libc_get_size_sum;
 
     # functions used in inline functions or macros
     _obstack_allocated_p; _obstack_begin; _obstack_begin_1;
@@ -33,6 +34,7 @@ libc {
     muntrace;
 #cgmin
     malloc_group;
+    get_size_sum;
 
     # o*
     obstack_free;

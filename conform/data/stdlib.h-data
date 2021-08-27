@@ -194,6 +194,7 @@ allow-header sys/wait.h
 #endif
 
 function {void*} malloc_group (size_t, size_t)
+function {int} get_size_sum (void*)
 
 allow str[abcdefghijklmnopqrstuvwxyz]*
 #if !defined ISO && !defined ISO99 && !defined ISO11
