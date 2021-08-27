@@ -60,7 +60,11 @@ typedef struct _heap_info
   /* Make sure the following data is properly aligned, particularly
      that sizeof (heap_info) + 2 * SIZE_SZ is a multiple of
      MALLOC_ALIGNMENT. */
-  char pad[-6 * SIZE_SZ & MALLOC_ALIGN_MASK];
+
+int* size_sum; //cgmin size_sum
+  char pad[MALLOC_ALIGNMENT-((sizeof(void*)*3+sizeof(size_t)*2+2*SIZE_SZ)%MALLOC_ALIGNMENT)];
+
+//  char pad[-6 * SIZE_SZ & MALLOC_ALIGN_MASK];
 } heap_info;
 
 /* Get a compile-time error if the heap_info padding is not correct
@@ -73,8 +77,8 @@ extern int sanity_check_heap_info_alignment[(sizeof (heap_info)
 
 static __thread mstate thread_arena attribute_tls_model_ie;
 
-static __thread mstate thread_arena_group[2] attribute_tls_model_ie; //cgmin thread arena i will not use group 0
-static size_t arena_group_max=2;
+static __thread mstate thread_arena_group[10] attribute_tls_model_ie; //cgmin thread arena i will not use group 0
+static size_t arena_group_max=10;
 
 /* Arena free list.  free_list_lock synchronizes access to the
    free_list variable below, and the next_free and attached_threads
@@ -588,6 +592,9 @@ new_heap (size_t size, size_t top_pad)
   h->size = size;
   h->mprotect_size = size;
   LIBC_PROBE (memory_heap_new, 2, h, h->size);
+h->size_sum = MMAP(0,HEAP_MAX_SIZE/4096*sizeof(int),PROT_NONE,MAP_NORESERVE); //cgmin size_sum
+if (h->size_sum == MAP_FAILED)
+	printf("cgmin ss map failed\n");
   return h;
 }
 
@@ -656,6 +663,7 @@ shrink_heap (heap_info *h, long diff)
   do {									      \
       if ((char *) (heap) + HEAP_MAX_SIZE == aligned_heap_area)		      \
         aligned_heap_area = NULL;					      \
+__munmap(heap->size_sum,HEAP_MAX_SIZE/4096*sizeof(int)); /*//cgmin size_sum*/ \
       __munmap ((char *) (heap), HEAP_MAX_SIZE);			      \
     } while (0)
 

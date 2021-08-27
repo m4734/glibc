@@ -847,6 +847,7 @@ int      __posix_memalign(void **, size_t, size_t);
 
 
 void*  __libc_malloc_group(size_t, size_t); //cgmin
+int  __libc_get_size_sum(void*);
 
 /* M_MXFAST is a standard SVID/XPG tuning option, usually listed in malloc.h */
 #ifndef M_MXFAST
@@ -2036,8 +2037,6 @@ free_perturb (char *p, size_t n)
   if (__glibc_unlikely (perturb_byte))
     memset (p, perturb_byte, n);
 }
-
-
 
 #include <stap-probe.h>
 
@@ -3576,7 +3575,7 @@ else
       return newmem;
     }
 
-  if (SINGLE_THREAD_P)
+  if (SINGLE_THREAD_P && group == 0)
     {
       newp = _int_realloc (ar_ptr, oldp, oldsize, nb);
       assert (!newp || chunk_is_mmapped (mem2chunk (newp)) ||
@@ -3877,6 +3876,100 @@ __libc_calloc (size_t n, size_t elem_size)
 #endif
 }
 
+static int
+_int_get_size_sum(mstate av,mchunkptr p)
+{
+if (av == NULL || p == NULL || av->group == 0)
+return 4096;	
+
+heap_info *hi = heap_for_ptr(p);
+int index = ((unsigned long)(p)-((unsigned long)(p) & ~(HEAP_MAX_SIZE-1)))/4096;
+return hi->size_sum[index];
+
+}
+
+static void //cgmin size_sum
+add_size (mstate av, mchunkptr p)
+{
+if (av == NULL || p == NULL || av->group == 0)
+return;	
+
+size_t size = chunksize(p);
+heap_info *hi = heap_for_ptr(p);
+
+int index = ((unsigned long)(p)-((unsigned long)(p) & ~(HEAP_MAX_SIZE-1)))/4096;
+unsigned long addr = (unsigned long)p;
+
+if ((addr%4096) + size <= 4096)
+{
+	hi->size_sum[index]+=size;
+	return;
+}
+
+size_t add = 4096-(addr%4096);
+hi->size_sum[index]+=add;
+addr+=add;
+size-=add;
+index++;
+
+int i,cnt=size/4096;
+for (i=0;i<cnt;i++)
+{
+hi->size_sum[index]+= 4096;
+index++;
+}
+
+hi->size_sum[index]+= size%4096;
+
+}
+
+static void //cgmin size_sum
+sub_size (mstate av, mchunkptr p)
+{
+if (av == NULL || p == NULL || av->group == 0)
+return;
+
+size_t size = chunksize(p);
+heap_info *hi = heap_for_ptr(p);
+
+int index = ((unsigned long)(p)-((unsigned long)(p) & ~(HEAP_MAX_SIZE-1)))/4096;
+unsigned long addr = (unsigned long)p;
+
+if ((addr%4096) + size <= 4096)
+{
+	hi->size_sum[index]-=size;
+	return;
+}
+
+size_t add = 4096-(addr%4096);
+hi->size_sum[index]-=add;
+addr+=add;
+size-=add;
+index++;
+
+int i,cnt=size/4096;
+for (i=0;i<cnt;i++)
+{
+hi->size_sum[index]-= 4096;
+index++;
+}
+
+hi->size_sum[index]-= size%4096;
+
+
+}
+
+
+
+int
+__libc_get_size_sum(void* mem)
+{
+  mchunkptr p = mem2chunk (mem);
+  mstate ar_ptr = arena_for_chunk (p);
+
+return _int_get_size_sum(ar_ptr,p);
+}
+
 void *
 __libc_malloc_group(size_t bytes, size_t group) //cgmin
 {
@@ -4043,6 +4136,7 @@ _int_malloc (mstate av, size_t bytes)
       void *p = sysmalloc (nb, av);
       if (p != NULL)
 	alloc_perturb (p, bytes);
+	add_size(av,p);
       return p;
     }
 
@@ -4146,6 +4240,7 @@ _int_malloc (mstate av, size_t bytes)
 #endif
 	      void *p = chunk2mem (victim);
 	      alloc_perturb (p, bytes);
+add_size(av,victim);
 	      return p;
 	    }
 	}
@@ -4233,6 +4328,7 @@ _int_malloc (mstate av, size_t bytes)
 #endif
           void *p = chunk2mem (victim);
           alloc_perturb (p, bytes);
+add_size(av,victim);
           return p;
         }
     }
@@ -4335,6 +4431,7 @@ _int_malloc (mstate av, size_t bytes)
               check_malloced_chunk (av, victim, nb);
               void *p = chunk2mem (victim);
               alloc_perturb (p, bytes);
+add_size(av,victim);
               return p;
             }
 
@@ -4384,6 +4481,7 @@ _int_malloc (mstate av, size_t bytes)
               check_malloced_chunk (av, victim, nb);
               void *p = chunk2mem (victim);
               alloc_perturb (p, bytes);
+add_size(av,victim);
               return p;
 #if USE_TCACHE
 		}
@@ -4467,7 +4565,11 @@ _int_malloc (mstate av, size_t bytes)
 	  && tcache_unsorted_count > mp_.tcache_unsorted_limit)
 	{
 //		if (group >= 0) //cgmin tcache
-			return tcache_group_get(tc_idx,group);
+//			return tcache_group_get(tc_idx,group);
+			void *rp = tcache_group_get(tc_idx,group);
+			add_size(av,mem2chunk(rp));
+			return rp;
+
 //		else
 //	  return tcache_get (tc_idx);
 	}
@@ -4483,7 +4585,11 @@ _int_malloc (mstate av, size_t bytes)
       if (return_cached)
 	{
 //		if (group >= 0) //cgmin tcache
-			return tcache_group_get(tc_idx,group);
+//			return tcache_group_get(tc_idx,group);
+			void *rp = tcache_group_get(tc_idx,group);
+			add_size(av,mem2chunk(rp));
+			return rp;
+
 //		else
 //	  return tcache_get (tc_idx);
 	}
@@ -4552,6 +4658,7 @@ _int_malloc (mstate av, size_t bytes)
               check_malloced_chunk (av, victim, nb);
               void *p = chunk2mem (victim);
               alloc_perturb (p, bytes);
+add_size(av,victim);
               return p;
             }
         }
@@ -4660,6 +4767,7 @@ _int_malloc (mstate av, size_t bytes)
               check_malloced_chunk (av, victim, nb);
               void *p = chunk2mem (victim);
               alloc_perturb (p, bytes);
+add_size(av,victim);
               return p;
             }
         }
@@ -4698,6 +4806,7 @@ _int_malloc (mstate av, size_t bytes)
           check_malloced_chunk (av, victim, nb);
           void *p = chunk2mem (victim);
           alloc_perturb (p, bytes);
+add_size(av,victim);
           return p;
         }
 
@@ -4721,6 +4830,7 @@ _int_malloc (mstate av, size_t bytes)
           void *p = sysmalloc (nb, av);
           if (p != NULL)
             alloc_perturb (p, bytes);
+add_size(av,mem2chunk(p));
           return p;
         }
     }
@@ -4743,6 +4853,8 @@ _int_free (mstate av, mchunkptr p, int have_lock)
   mchunkptr fwd;               /* misc temp for linking */
 
   size = chunksize (p);
+
+sub_size(av,p);
 
 //if (av == thread_arena_group[0] || av != &main_arena) //cgmin test
 //	malloc_printerr("aaaeee\n");
@@ -6273,6 +6385,8 @@ __malloc_info (int options, FILE *fp)
 
   return 0;
 }
+
+
 weak_alias (__malloc_info, malloc_info)
 
 strong_alias (__libc_calloc, __calloc) weak_alias (__libc_calloc, calloc)
@@ -6294,6 +6408,7 @@ weak_alias (__malloc_usable_size, malloc_usable_size)
 weak_alias (__malloc_trim, malloc_trim)
 
 strong_alias (__libc_malloc_group, __malloc_group) weak_alias (__libc_malloc_group, malloc_group) //cgmin
+strong_alias (__libc_get_size_sum, __get_size_sum) weak_alias (__libc_get_size_sum, get_size_sum)
 
 #if SHLIB_COMPAT (libc, GLIBC_2_0, GLIBC_2_26)
 compat_symbol (libc, __libc_free, cfree, GLIBC_2_0);
