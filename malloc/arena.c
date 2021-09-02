@@ -592,9 +592,17 @@ new_heap (size_t size, size_t top_pad)
   h->size = size;
   h->mprotect_size = size;
   LIBC_PROBE (memory_heap_new, 2, h, h->size);
-h->size_sum = MMAP(0,HEAP_MAX_SIZE/4096*sizeof(int),PROT_NONE,MAP_NORESERVE); //cgmin size_sum
+
+h->size_sum = (int*)MMAP(0,HEAP_MAX_SIZE/4096*sizeof(int),PROT_READ | PROT_WRITE,MAP_NORESERVE); //cgmin size_sum
+//printf("heap %ld %ld %p\n",HEAP_MAX_SIZE,HEAP_MAX_SIZE/4096*sizeof(int),h->size_sum);
+
 if (h->size_sum == MAP_FAILED)
 	printf("cgmin ss map failed\n");
+
+int i;
+for (i=0;i<HEAP_MAX_SIZE/4096;i++)
+	h->size_sum[i] = 0;
+
   return h;
 }
 
@@ -895,6 +903,15 @@ a->group = group; //cgmin group
      __malloc_fork_lock_parent.  */
 
   __libc_lock_lock (a->mutex);
+/*
+printf("int new arena group %p\n",a); //cgmin test
+
+mchunkptr bck,fwd;
+      bck = unsorted_chunks(a);
+      fwd = bck->fd;
+
+printf("%p %p %p %p\n",fwd,fwd->bk,bck,bck->fd);
+*/
 
   return a;
 }

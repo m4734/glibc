@@ -28,14 +28,25 @@ for (i=0;i<10;i++)
 {
 	for (j=1;j<=5;j++)
 	{
-		aaa[cnt] = malloc_group(30,j);
+		aaa[cnt] = malloc_group(1024,j);
 		printf("%p ",aaa[cnt]);
 		cnt++;
 	}
 printf("\n");
 }
-
+/*
 for (i=0;i<cnt;i++)
+{
+
+printf("%p %d\n",aaa[i],get_size_sum(aaa[i]));
+}
+*/
+printf("------------\n");
+for (i=0;i<cnt;i++)
+{
+printf("%p ",aaa[i]);
 	free(aaa[i]);
+}
+printf("end\n");
 	return 0;
 }

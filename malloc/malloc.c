@@ -3083,7 +3083,7 @@ typedef struct tcache_perthread_struct
 static __thread bool tcache_shutting_down = false;
 static __thread tcache_perthread_struct *tcache = NULL;
 
-static __thread tcache_perthread_struct *tcache_group[2] = {NULL,}; // cgmin tcache
+static __thread tcache_perthread_struct *tcache_group[10] = {NULL,}; // cgmin tcache
 
 /* Caller must ensure that we know tc_idx is valid and there's room
    for more chunks.  */
@@ -3879,11 +3879,23 @@ __libc_calloc (size_t n, size_t elem_size)
 static int
 _int_get_size_sum(mstate av,mchunkptr p)
 {
-if (av == NULL || p == NULL || av->group == 0)
-return 4096;	
 
+if (av == NULL || p == NULL || av->group == 0)
+{
+printf("fail\n");
+return 4096;	
+}
+
+//return 0;
+/*
+if (p == NULL)
+{
+printf("fail\n");
+return 4096;
+}
+*/
 heap_info *hi = heap_for_ptr(p);
-int index = ((unsigned long)(p)-((unsigned long)(p) & ~(HEAP_MAX_SIZE-1)))/4096;
+int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
 return hi->size_sum[index];
 
 }
@@ -3891,19 +3903,24 @@ return hi->size_sum[index];
 static void //cgmin size_sum
 add_size (mstate av, mchunkptr p)
 {
+//return;
+
 if (av == NULL || p == NULL || av->group == 0)
 return;	
-
 size_t size = chunksize(p);
 heap_info *hi = heap_for_ptr(p);
 
-int index = ((unsigned long)(p)-((unsigned long)(p) & ~(HEAP_MAX_SIZE-1)))/4096;
+int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
 unsigned long addr = (unsigned long)p;
 
-if ((addr%4096) + size <= 4096)
+//printf("(%p %p %d %ld %p %d)\n",p,hi,index,size,hi->size_sum,hi->size_sum[index]);
+if ((addr%4096) + size < 4096)
 {
+//printf("ttt1\n");
 	hi->size_sum[index]+=size;
+//printf("ttt2\n");
 	return;
+
 }
 
 size_t add = 4096-(addr%4096);
@@ -3926,19 +3943,29 @@ hi->size_sum[index]+= size%4096;
 static void //cgmin size_sum
 sub_size (mstate av, mchunkptr p)
 {
+//return;
+
 if (av == NULL || p == NULL || av->group == 0)
 return;
-
 size_t size = chunksize(p);
 heap_info *hi = heap_for_ptr(p);
 
-int index = ((unsigned long)(p)-((unsigned long)(p) & ~(HEAP_MAX_SIZE-1)))/4096;
+int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
 unsigned long addr = (unsigned long)p;
 
-if ((addr%4096) + size <= 4096)
+//printf("sub_size %p %ld index %d\n",p,size,index);
+if ((addr%4096) + size < 4096)
 {
+/*
+if (hi->size_sum[index] < size)
+{
+	printf("xxx\n");
+}
+*/
 	hi->size_sum[index]-=size;
+//printf("index %d\n",index);
 	return;
+
 }
 
 size_t add = 4096-(addr%4096);
@@ -3950,24 +3977,39 @@ index++;
 int i,cnt=size/4096;
 for (i=0;i<cnt;i++)
 {
+/*
+if (hi->size_sum[index] < size)
+{
+	printf("xxx\n");
+}
+*/
 hi->size_sum[index]-= 4096;
 index++;
 }
-
+/*
+if (hi->size_sum[index] < size)
+{
+	printf("xxx\n");
+}
+*/
 hi->size_sum[index]-= size%4096;
 
+//printf("index %d\n",index);
 
 }
 
 
 
 int
-__libc_get_size_sum(void* mem)
+__libc_get_size_sum(void *mem)
 {
   mchunkptr p = mem2chunk (mem);
+/*
   mstate ar_ptr = arena_for_chunk (p);
 
 return _int_get_size_sum(ar_ptr,p);
+*/
+return _int_get_size_sum(NULL,p);
 }
 
 void *
@@ -4135,8 +4177,10 @@ _int_malloc (mstate av, size_t bytes)
     {
       void *p = sysmalloc (nb, av);
       if (p != NULL)
+{
 	alloc_perturb (p, bytes);
 	add_size(av,p);
+}
       return p;
     }
 
@@ -4855,7 +4899,15 @@ _int_free (mstate av, mchunkptr p, int have_lock)
   size = chunksize (p);
 
 sub_size(av,p);
+/*
+if (av->group > 0)
+{
+      bck = unsorted_chunks(av);
+      fwd = bck->fd;
 
+printf("------\n%p %p %p %p\n-------\n",fwd,fwd->bk,bck,bck->fd);
+}
+*/
 //if (av == thread_arena_group[0] || av != &main_arena) //cgmin test
 //	malloc_printerr("aaaeee\n");
 
@@ -4877,7 +4929,8 @@ sub_size(av,p);
   {
 	  //cgmin tcache
 tcache_perthread_struct* tcachep;
-int group = arena_for_chunk(p)->group;
+//int group = arena_for_chunk(p)->group;
+int group = av->group;
 if (group > 0)
 	tcachep = tcache_group[group];
 else
@@ -4973,7 +5026,6 @@ else
   */
 
   if ((unsigned long)(size) <= (unsigned long)(get_max_fast ())
-
 #if TRIM_FASTBINS
       /*
 	If TRIM_FASTBINS set, don't place chunks
@@ -4982,6 +5034,12 @@ else
       && (chunk_at_offset(p, size) != av->top)
 #endif
       ) {
+//printf("free unsorted chunk arean0 %p\n",av);//cgmin test
+/*
+      bck = unsorted_chunks(av);
+      fwd = bck->fd;
+*/
+//printf("%p %p %p %p\n",fwd,fwd->bk,bck,bck->fd);
 
     if (__builtin_expect (chunksize_nomask (chunk_at_offset (p, size))
 			  <= CHUNK_HDR_SZ, 0)
@@ -5049,7 +5107,14 @@ else
   */
 
   else if (!chunk_is_mmapped(p)) {
+/*
+printf("free unsorted chunk arean1 %p\n",av);//cgmin test
 
+      bck = unsorted_chunks(av);
+      fwd = bck->fd;
+
+printf("%p %p %p %p\n",fwd,fwd->bk,bck,bck->fd);
+*/
     /* If we're single-threaded, don't lock the arena.  */
     if (SINGLE_THREAD_P)
       have_lock = true;
@@ -5106,8 +5171,13 @@ else
 	been given one chance to be used in malloc.
       */
 
+//printf("free unsorted chunk arean2 %p\n",av);//cgmin test
+
       bck = unsorted_chunks(av);
       fwd = bck->fd;
+
+//printf("%p %p %p %p\n",fwd,fwd->bk,bck,bck->fd);
+
       if (__glibc_unlikely (fwd->bk != bck))
 	malloc_printerr ("free(): corrupted unsorted chunks");
       p->fd = fwd;

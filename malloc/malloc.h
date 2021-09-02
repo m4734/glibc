@@ -85,6 +85,9 @@ __THROW __attribute_malloc__  __MALLOC_DEPRECATED;
 extern void *malloc_group (size_t __size, size_t __group) __THROW __attribute_malloc__
      __attribute_alloc_size__ ((2)) __wur; //cgmin
 
+extern int get_size_sum (void *__mem) __THROW;// __attribute_malloc__
+//     __attribute_alloc_size__ ((2)) __wur; //cgmin
+
 //extern void *malloc_group (size_t __size, size_t __group);
 
 
