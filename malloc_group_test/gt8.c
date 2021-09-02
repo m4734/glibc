@@ -24,7 +24,7 @@ for (i=0;i<100;i++)
 	free(aaa[i]);
 */
 cnt = 0;
-for (i=0;i<1;i++)
+for (i=0;i<10;i++)
 {
 	for (j=1;j<=5;j++)
 	{
@@ -43,7 +43,7 @@ printf("%p %d\n",aaa[i],get_size_sum(aaa[i]));
 */
 printf("------------\n");
 for (i=0;i<cnt;i++)
-	printf("%d\n",get_size_sum(aaa[i]));
+	printf("%d\n",get_size_sum((void*)((unsigned long)aaa[i]-(unsigned long)aaa[i]%4096)));
 for (i=0;i<cnt;i++)
 {
 printf("%p\n",aaa[i]);

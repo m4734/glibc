@@ -3880,9 +3880,9 @@ static int
 _int_get_size_sum(mstate av,mchunkptr p)
 {
 
-if (p == NULL)
+if (/*av == NULL || av->group == 0 || */p == NULL)
 {
-printf("fail\n");
+//printf("fail\n");
 return 4096;	
 }
 
@@ -4003,13 +4003,13 @@ hi->size_sum[index]-= size%4096;
 int
 __libc_get_size_sum(void *mem)
 {
-  mchunkptr p = mem2chunk (mem);
-/*
-  mstate ar_ptr = arena_for_chunk (p);
+//  mchunkptr p = mem2chunk (mem);
 
-return _int_get_size_sum(ar_ptr,p);
-*/
-return _int_get_size_sum(NULL,p);
+//  mstate ar_ptr = arena_for_chunk (p);
+
+return _int_get_size_sum(NULL,(mchunkptr)mem); // not p it is mem but we need p
+
+//return _int_get_size_sum(NULL,p);
 }
 
 void *
