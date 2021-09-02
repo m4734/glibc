@@ -4071,6 +4071,7 @@ if (group == 0)
 //write(1,"ggg6",4);
       victim = tcache_group_get (tc_idx,group);
 //      printf("tcache victim %p\n",victim); //cgmin test
+	add_size(arena_for_chunk(mem2chunk(victim)),mem2chunk(victim)); //cgmin
       return TAG_NEW_USABLE (victim);
     }
 
@@ -4179,7 +4180,7 @@ _int_malloc (mstate av, size_t bytes)
       if (p != NULL)
 {
 	alloc_perturb (p, bytes);
-	add_size(av,p);
+	add_size(av,p); // ?? chunk? mem?
 }
       return p;
     }
