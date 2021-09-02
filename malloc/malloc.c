@@ -3880,7 +3880,7 @@ static int
 _int_get_size_sum(mstate av,mchunkptr p)
 {
 
-if (av == NULL || p == NULL || av->group == 0)
+if (p == NULL)
 {
 printf("fail\n");
 return 4096;	
