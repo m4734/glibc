@@ -3482,16 +3482,14 @@ __libc_realloc (void *oldmem, size_t bytes)
   /* its size */
   const INTERNAL_SIZE_T oldsize = chunksize (oldp);
 
-int group = arena_for_chunk(oldp)->group; //cgmin realloc
+//int group = arena_for_chunk(oldp)->group; //cgmin realloc
+int group = 0;
   if (chunk_is_mmapped (oldp))
     ar_ptr = NULL;
   else
     {
-
-
-
       ar_ptr = arena_for_chunk (oldp);
-
+group = ar_ptr->group;
 if (group > 0) //cgmin
 {
 	MAYBE_INIT_TCACHE_GROUP(group);
@@ -3880,10 +3878,10 @@ static int
 _int_get_size_sum(mstate av,mchunkptr p)
 {
 
-if (/*av == NULL || av->group == 0 || */p == NULL)
+if (/*av == NULL || av->group == 0 ||*/ p == NULL)
 {
-//printf("fail\n");
-return 4096;	
+printf("fail\n");
+return 4096+1;	
 }
 
 //return 0;
@@ -3895,6 +3893,12 @@ return 4096;
 }
 */
 heap_info *hi = heap_for_ptr(p);
+av = hi->ar_ptr;
+if (av->group == 0)
+{
+printf("crit\n");
+return 4096+1;
+}
 int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
 return hi->size_sum[index];
 
@@ -3906,7 +3910,10 @@ add_size (mstate av, mchunkptr p)
 //return;
 
 if (av == NULL || p == NULL || av->group == 0)
+{
+//printf("xxx1\n");
 return;	
+}
 size_t size = chunksize(p);
 heap_info *hi = heap_for_ptr(p);
 
@@ -3939,14 +3946,15 @@ index++;
 hi->size_sum[index]+= size%4096;
 
 }
-
 static void //cgmin size_sum
 sub_size (mstate av, mchunkptr p)
 {
 //return;
-
 if (av == NULL || p == NULL || av->group == 0)
+{
+//printf("xxx2\n");
 return;
+}
 size_t size = chunksize(p);
 heap_info *hi = heap_for_ptr(p);
 
@@ -3993,7 +4001,6 @@ if (hi->size_sum[index] < size)
 }
 */
 hi->size_sum[index]-= size%4096;
-
 //printf("index %d\n",index);
 
 }
@@ -4009,7 +4016,7 @@ __libc_get_size_sum(void *mem)
 
 return _int_get_size_sum(NULL,(mchunkptr)mem); // not p it is mem but we need p
 
-//return _int_get_size_sum(NULL,p);
+//return _int_get_size_sum(ar_ptr,p);
 }
 
 void *
@@ -4180,7 +4187,7 @@ _int_malloc (mstate av, size_t bytes)
       if (p != NULL)
 {
 	alloc_perturb (p, bytes);
-	add_size(av,p); // ?? chunk? mem?
+//	add_size(av,mem2chunk(p)); // ?? chunk? mem? // av null
 }
       return p;
     }
@@ -4899,7 +4906,9 @@ _int_free (mstate av, mchunkptr p, int have_lock)
 
   size = chunksize (p);
 
+/*
 sub_size(av,p);
+*/
 /*
 if (av->group > 0)
 {
@@ -4973,6 +4982,7 @@ else
 			  tcache_group_put(p,tc_idx,group);
 //		  else
 //	    tcache_put (p, tc_idx);
+	sub_size(av,p);
 	    return;
 	  }
       }
@@ -5064,6 +5074,7 @@ else
       }
 
     free_perturb (chunk2mem(p), size - CHUNK_HDR_SZ);
+sub_size(av,p);
 
     atomic_store_relaxed (&av->have_fastchunks, true);
     unsigned int idx = fastbin_index(size);
@@ -5144,6 +5155,7 @@ printf("%p %p %p %p\n",fwd,fwd->bk,bck,bck->fd);
       malloc_printerr ("free(): invalid next size (normal)");
 
     free_perturb (chunk2mem(p), size - CHUNK_HDR_SZ);
+sub_size(av,p);
 
     /* consolidate backward */
     if (!prev_inuse(p)) {
@@ -5410,10 +5422,12 @@ _int_realloc(mstate av, mchunkptr oldp, INTERNAL_SIZE_T oldsize,
           (unsigned long) (newsize = oldsize + nextsize) >=
           (unsigned long) (nb + MINSIZE))
         {
+sub_size(av,oldp);
           set_head_size (oldp, nb | (av != &main_arena ? NON_MAIN_ARENA : 0));
           av->top = chunk_at_offset (oldp, nb);
           set_head (av->top, (newsize - nb) | PREV_INUSE);
           check_inuse_chunk (av, oldp);
+add_size(av,oldp);
           return TAG_NEW_USABLE (chunk2rawmem (oldp));
         }
 
@@ -5425,6 +5439,8 @@ _int_realloc(mstate av, mchunkptr oldp, INTERNAL_SIZE_T oldsize,
         {
           newp = oldp;
           unlink_chunk (av, next);
+add_size(av,next);
+set_head_size(newp,newsize);
         }
 
       /* allocate, copy, free */
@@ -5446,6 +5462,8 @@ _int_realloc(mstate av, mchunkptr oldp, INTERNAL_SIZE_T oldsize,
             {
               newsize += oldsize;
               newp = oldp;
+
+set_head_size(newp,newsize);
             }
           else
             {
@@ -5469,15 +5487,19 @@ _int_realloc(mstate av, mchunkptr oldp, INTERNAL_SIZE_T oldsize,
 
   if (remainder_size < MINSIZE)   /* not enough extra to split off */
     {
+sub_size(av,newp);
       set_head_size (newp, newsize | (av != &main_arena ? NON_MAIN_ARENA : 0));
       set_inuse_bit_at_offset (newp, newsize);
+add_size(av,newp);
     }
   else   /* split remainder */
     {
       remainder = chunk_at_offset (newp, nb);
       /* Clear any user-space tags before writing the header.  */
       remainder = TAG_REGION (remainder, remainder_size);
+//sub_size(av,newp);
       set_head_size (newp, nb | (av != &main_arena ? NON_MAIN_ARENA : 0));
+//add_size(av,newp);
       set_head (remainder, remainder_size | PREV_INUSE |
                 (av != &main_arena ? NON_MAIN_ARENA : 0));
       /* Mark remainder as inuse so free() won't complain */
