@@ -88,6 +88,8 @@ extern void *malloc_group (size_t __size, size_t __group) __THROW __attribute_ma
 extern int get_size_sum (void *__mem) __THROW;// __attribute_malloc__
 //     __attribute_alloc_size__ ((2)) __wur; //cgmin
 
+extern int check_group (void *m) __THROW;
+
 //extern void *malloc_group (size_t __size, size_t __group);
 
 

@@ -848,6 +848,7 @@ int      __posix_memalign(void **, size_t, size_t);
 
 void*  __libc_malloc_group(size_t, size_t); //cgmin
 int  __libc_get_size_sum(void*);
+int __libc_check_group(void*);
 
 /* M_MXFAST is a standard SVID/XPG tuning option, usually listed in malloc.h */
 #ifndef M_MXFAST
@@ -2413,6 +2414,8 @@ do_check_malloc_state (mstate av)
    be extended or replaced.
  */
 
+static void add_size (mstate av, mchunkptr p);
+
 static void *
 sysmalloc (INTERNAL_SIZE_T nb, mstate av)
 {
@@ -2590,6 +2593,7 @@ sysmalloc (INTERNAL_SIZE_T nb, mstate av)
 			CHUNK_HDR_SZ | PREV_INUSE);
               set_foot (chunk_at_offset (old_top, old_size), CHUNK_HDR_SZ);
               set_head (old_top, old_size | PREV_INUSE | NON_MAIN_ARENA);
+add_size(av,old_top); //cgmin we didn't used this chunk
               _int_free (av, old_top, 1);
             }
           else
@@ -3875,6 +3879,27 @@ __libc_calloc (size_t n, size_t elem_size)
 }
 
 static int
+_int_check_group(void* m)
+{
+	mchunkptr p = mem2chunk(m);
+
+  if (chunk_is_mmapped (p))
+	return 0;
+
+if ((void*)heap_for_ptr(p) == (void*)((unsigned long)p & ~(4096-1))) // it is first address of heap and we need the metadata
+	return 0;
+
+  mstate ar_ptr = arena_for_chunk (p);
+if (ar_ptr == 0) // it happens when we free the metadata
+{
+//	return 0;
+//	printf("ar_ptr 0!!!\n");
+	return 0;
+}
+return ar_ptr->group;
+}
+
+static int
 _int_get_size_sum(mstate av,mchunkptr p)
 {
 
@@ -3893,10 +3918,14 @@ return 4096;
 }
 */
 heap_info *hi = heap_for_ptr(p);
+if (hi == 0 || hi == (void*)((unsigned long)p & ~(4096-1)))
+	return 4096+1;
 av = hi->ar_ptr;
-if (av->group == 0)
+if (av == 0)
+	return 4096+1;
+else if (av->group == 0) // av == 0 mmapped??
 {
-printf("crit\n");
+//printf("crit\n");
 return 4096+1;
 }
 int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
@@ -4005,7 +4034,11 @@ hi->size_sum[index]-= size%4096;
 
 }
 
-
+int
+__libc_check_group(void *m)
+{
+return _int_check_group(m);
+}
 
 int
 __libc_get_size_sum(void *mem)
@@ -4154,9 +4187,13 @@ _int_malloc (mstate av, size_t bytes)
   size_t tcache_unsorted_count;	    /* count of unsorted chunks processed */
 
 //cgmin tcache
-
 	      tcache_perthread_struct* tcachep;
-	      int group = av->group;
+	      int group;
+if (av == NULL)
+	group = 0;
+else
+	group = av->group;
+
 	      if (group > 0)
 		      tcachep = tcache_group[group];
 	      else
@@ -4187,7 +4224,7 @@ _int_malloc (mstate av, size_t bytes)
       if (p != NULL)
 {
 	alloc_perturb (p, bytes);
-//	add_size(av,mem2chunk(p)); // ?? chunk? mem? // av null
+	add_size(av,mem2chunk(p)); // ?? chunk? mem? // av null
 }
       return p;
     }
@@ -4906,9 +4943,9 @@ _int_free (mstate av, mchunkptr p, int have_lock)
 
   size = chunksize (p);
 
-/*
+
 sub_size(av,p);
-*/
+
 /*
 if (av->group > 0)
 {
@@ -4940,7 +4977,11 @@ printf("------\n%p %p %p %p\n-------\n",fwd,fwd->bk,bck,bck->fd);
 	  //cgmin tcache
 tcache_perthread_struct* tcachep;
 //int group = arena_for_chunk(p)->group;
-int group = av->group;
+int group;
+if (av == NULL)
+	group = 0;
+else
+	group = av->group;
 if (group > 0)
 	tcachep = tcache_group[group];
 else
@@ -4982,7 +5023,7 @@ else
 			  tcache_group_put(p,tc_idx,group);
 //		  else
 //	    tcache_put (p, tc_idx);
-	sub_size(av,p);
+//	sub_size(av,p);
 	    return;
 	  }
       }
@@ -5074,7 +5115,7 @@ else
       }
 
     free_perturb (chunk2mem(p), size - CHUNK_HDR_SZ);
-sub_size(av,p);
+//sub_size(av,p);
 
     atomic_store_relaxed (&av->have_fastchunks, true);
     unsigned int idx = fastbin_index(size);
@@ -5155,7 +5196,7 @@ printf("%p %p %p %p\n",fwd,fwd->bk,bck,bck->fd);
       malloc_printerr ("free(): invalid next size (normal)");
 
     free_perturb (chunk2mem(p), size - CHUNK_HDR_SZ);
-sub_size(av,p);
+//sub_size(av,p);
 
     /* consolidate backward */
     if (!prev_inuse(p)) {
@@ -5462,8 +5503,8 @@ set_head_size(newp,newsize);
             {
               newsize += oldsize;
               newp = oldp;
-
 set_head_size(newp,newsize);
+
             }
           else
             {
@@ -5487,10 +5528,10 @@ set_head_size(newp,newsize);
 
   if (remainder_size < MINSIZE)   /* not enough extra to split off */
     {
-sub_size(av,newp);
+//sub_size(av,newp);
       set_head_size (newp, newsize | (av != &main_arena ? NON_MAIN_ARENA : 0));
       set_inuse_bit_at_offset (newp, newsize);
-add_size(av,newp);
+//add_size(av,newp);
     }
   else   /* split remainder */
     {
@@ -6502,6 +6543,7 @@ weak_alias (__malloc_trim, malloc_trim)
 
 strong_alias (__libc_malloc_group, __malloc_group) weak_alias (__libc_malloc_group, malloc_group) //cgmin
 strong_alias (__libc_get_size_sum, __get_size_sum) weak_alias (__libc_get_size_sum, get_size_sum)
+strong_alias (__libc_check_group, __check_group) weak_alias (__libc_check_group, check_group)
 
 #if SHLIB_COMPAT (libc, GLIBC_2_0, GLIBC_2_26)
 compat_symbol (libc, __libc_free, cfree, GLIBC_2_0);

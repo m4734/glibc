@@ -14,6 +14,7 @@ libc {
 #cgmin
     __libc_malloc_group;
     __libc_get_size_sum;
+    __libc_check_group;
 
     # functions used in inline functions or macros
     _obstack_allocated_p; _obstack_begin; _obstack_begin_1;
@@ -35,6 +36,7 @@ libc {
 #cgmin
     malloc_group;
     get_size_sum;
+    check_group;
 
     # o*
     obstack_free;
