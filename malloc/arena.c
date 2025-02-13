@@ -595,8 +595,18 @@ new_heap (size_t size, size_t top_pad)
   LIBC_PROBE (memory_heap_new, 2, h, h->size);
 
   //cgmin init
-  h->size_sum = NULL;
-  h->size_cnt = NULL;
+//  h->size_sum = NULL;
+//  h->size_cnt = NULL;
+
+h->size_sum = (int*)MMAP(0,HEAP_MAX_SIZE/4096*sizeof(int),PROT_READ | PROT_WRITE,MAP_NORESERVE); //cgmin size_sum
+h->size_cnt = (int*)MMAP(0,HEAP_MAX_SIZE/4096*sizeof(int),PROT_READ | PROT_WRITE,MAP_NORESERVE); //cgmin size_sum
+//printf("heap %ld %ld %p\n",HEAP_MAX_SIZE,HEAP_MAX_SIZE/4096*sizeof(int),h->size_sum);
+
+if (h->size_sum == MAP_FAILED || h->size_cnt == MAP_FAILED)
+	printf("cgmin ss map failed\n");
+int i;
+for (i=0;i<HEAP_MAX_SIZE/4096;i++)
+	h->size_sum[i] = h->size_cnt[i] = 0;
 
   return h;
 }
@@ -853,18 +863,17 @@ _int_new_arena_group (size_t size,size_t group) //cgmin new arena group
       if (!h)
         return 0;
     }
-
+/*
 h->size_sum = (int*)MMAP(0,HEAP_MAX_SIZE/4096*sizeof(int),PROT_READ | PROT_WRITE,MAP_NORESERVE); //cgmin size_sum
 h->size_cnt = (int*)MMAP(0,HEAP_MAX_SIZE/4096*sizeof(int),PROT_READ | PROT_WRITE,MAP_NORESERVE); //cgmin size_sum
 //printf("heap %ld %ld %p\n",HEAP_MAX_SIZE,HEAP_MAX_SIZE/4096*sizeof(int),h->size_sum);
 
 if (h->size_sum == MAP_FAILED || h->size_cnt == MAP_FAILED)
 	printf("cgmin ss map failed\n");
-
 int i;
 for (i=0;i<HEAP_MAX_SIZE/4096;i++)
 	h->size_sum[i] = h->size_cnt[i] = 0;
-
+*/
 
   a = h->ar_ptr = (mstate) (h + 1);
   malloc_init_state (a);
