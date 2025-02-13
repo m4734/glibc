@@ -666,7 +666,9 @@ shrink_heap (heap_info *h, long diff)
   do {									      \
       if ((char *) (heap) + HEAP_MAX_SIZE == aligned_heap_area)		      \
         aligned_heap_area = NULL;					      \
+      if (heap->size_sum)		      \
 __munmap(heap->size_sum,HEAP_MAX_SIZE/4096*sizeof(int)); /*//cgmin size_sum*/ \
+      if (heap->size_cnt)		      \
 __munmap(heap->size_cnt,HEAP_MAX_SIZE/4096*sizeof(int)); /*//cgmin size_sum*/ \
       __munmap ((char *) (heap), HEAP_MAX_SIZE);			      \
     } while (0)
