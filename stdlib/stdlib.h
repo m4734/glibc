@@ -541,6 +541,9 @@ extern void *malloc_group (size_t __size, size_t __group) __THROW __attribute_ma
 extern int get_size_sum (void *mem) __THROW;// __attribute_malloc__
 //     __attribute_alloc_size__ ((1)) __wur; //cgmin
 
+extern int* get_size_sum_p (void *mem) __THROW;// __attribute_malloc__
+extern int* get_size_cnt_p (void *mem) __THROW;// __attribute_malloc__
+
 extern int check_group (void *m) __THROW;
 
 //extern void *malloc_group (size_t __size, size_t __group);

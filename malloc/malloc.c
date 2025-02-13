@@ -849,6 +849,8 @@ int      __posix_memalign(void **, size_t, size_t);
 void*  __libc_malloc_group(size_t, size_t); //cgmin
 int  __libc_get_size_sum(void*);
 int __libc_check_group(void*);
+int*  __libc_get_size_sum_p(void*);
+int* __libc_get_size_cnt_p(void*);
 
 /* M_MXFAST is a standard SVID/XPG tuning option, usually listed in malloc.h */
 #ifndef M_MXFAST
@@ -2593,7 +2595,7 @@ sysmalloc (INTERNAL_SIZE_T nb, mstate av)
 			CHUNK_HDR_SZ | PREV_INUSE);
               set_foot (chunk_at_offset (old_top, old_size), CHUNK_HDR_SZ);
               set_head (old_top, old_size | PREV_INUSE | NON_MAIN_ARENA);
-add_size(av,old_top); //cgmin we didn't used this chunk
+add_size(av,old_top); //cgmin we didn't used this chunk // what is ths... //cgmin rollback
               _int_free (av, old_top, 1);
             }
           else
@@ -2892,6 +2894,7 @@ add_size(av,old_top); //cgmin we didn't used this chunk
       remainder = chunk_at_offset (p, nb);
       av->top = remainder;
       set_head (p, nb | PREV_INUSE | (av != &main_arena ? NON_MAIN_ARENA : 0));
+//add_size(av,p); // it is chunk... //cgmin rollback
       set_head (remainder, remainder_size | PREV_INUSE);
       check_malloced_chunk (av, p, nb);
       return chunk2mem (p);
@@ -3424,6 +3427,7 @@ __libc_free (void *mem)
           LIBC_PROBE (memory_mallopt_free_dyn_thresholds, 2,
                       mp_.mmap_threshold, mp_.trim_threshold);
         }
+// cgmin may need sub_size
       munmap_chunk (p);
     }
   else
@@ -3933,6 +3937,56 @@ return hi->size_sum[index];
 
 }
 
+static int*
+_int_get_size_sum_p(mstate av,mchunkptr p)
+{
+if (/*av == NULL || av->group == 0 ||*/ p == NULL)
+{
+printf("fail\n");
+return NULL;	
+}
+
+heap_info *hi = heap_for_ptr(p);
+if (hi == 0 || hi == (void*)((unsigned long)p & ~(4096-1)))
+	return NULL;
+av = hi->ar_ptr;
+if (av == 0)
+	return NULL;
+else if (av->group == 0) // av == 0 mmapped??
+{
+//printf("crit\n");
+return NULL;
+}
+int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
+return &hi->size_sum[index];
+
+}
+
+static int*
+_int_get_size_cnt_p(mstate av,mchunkptr p)
+{
+if (/*av == NULL || av->group == 0 ||*/ p == NULL)
+{
+printf("fail\n");
+return NULL;	
+}
+
+heap_info *hi = heap_for_ptr(p);
+if (hi == 0 || hi == (void*)((unsigned long)p & ~(4096-1)))
+	return NULL;
+av = hi->ar_ptr;
+if (av == 0)
+	return NULL;
+else if (av->group == 0) // av == 0 mmapped??
+{
+//printf("crit\n");
+return NULL;
+}
+int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
+return &hi->size_cnt[index];
+
+}
+
 static void //cgmin size_sum
 add_size (mstate av, mchunkptr p)
 {
@@ -4050,6 +4104,18 @@ __libc_get_size_sum(void *mem)
 return _int_get_size_sum(NULL,(mchunkptr)mem); // not p it is mem but we need p
 
 //return _int_get_size_sum(ar_ptr,p);
+}
+
+int*
+__libc_get_size_sum_p(void *mem)
+{
+return _int_get_size_sum_p(NULL,(mchunkptr)mem);
+}
+
+int*
+__libc_get_size_cnt_p(void *mem)
+{
+return _int_get_size_cnt_p(NULL,(mchunkptr)mem);
 }
 
 void *
@@ -4224,7 +4290,7 @@ else
       if (p != NULL)
 {
 	alloc_perturb (p, bytes);
-	add_size(av,mem2chunk(p)); // ?? chunk? mem? // av null
+	add_size(av,mem2chunk(p)); // ?? chunk? mem? // av null // not now //cgmin rollback
 }
       return p;
     }
@@ -4944,7 +5010,7 @@ _int_free (mstate av, mchunkptr p, int have_lock)
   size = chunksize (p);
 
 
-sub_size(av,p);
+sub_size(av,p); // no effect if is not grup
 
 /*
 if (av->group > 0)
@@ -5463,12 +5529,12 @@ _int_realloc(mstate av, mchunkptr oldp, INTERNAL_SIZE_T oldsize,
           (unsigned long) (newsize = oldsize + nextsize) >=
           (unsigned long) (nb + MINSIZE))
         {
-sub_size(av,oldp);
+sub_size(av,oldp); //no realloc now //cgmin rollback
           set_head_size (oldp, nb | (av != &main_arena ? NON_MAIN_ARENA : 0));
           av->top = chunk_at_offset (oldp, nb);
           set_head (av->top, (newsize - nb) | PREV_INUSE);
           check_inuse_chunk (av, oldp);
-add_size(av,oldp);
+add_size(av,oldp); //no relloc now //cgmin rollback
           return TAG_NEW_USABLE (chunk2rawmem (oldp));
         }
 
@@ -5480,8 +5546,9 @@ add_size(av,oldp);
         {
           newp = oldp;
           unlink_chunk (av, next);
-add_size(av,next);
-set_head_size(newp,newsize);
+//cgmin can't understhan this
+add_size(av,next); //cgmin rollback
+set_head_size(newp,newsize); //cgmin rollback
         }
 
       /* allocate, copy, free */
@@ -5503,7 +5570,7 @@ set_head_size(newp,newsize);
             {
               newsize += oldsize;
               newp = oldp;
-set_head_size(newp,newsize);
+//set_head_size(newp,newsize);
 
             }
           else
@@ -5538,9 +5605,9 @@ set_head_size(newp,newsize);
       remainder = chunk_at_offset (newp, nb);
       /* Clear any user-space tags before writing the header.  */
       remainder = TAG_REGION (remainder, remainder_size);
-//sub_size(av,newp);
+//sub_size(av,newp); // no realloc now
       set_head_size (newp, nb | (av != &main_arena ? NON_MAIN_ARENA : 0));
-//add_size(av,newp);
+//add_size(av,newp); // no realloc now
       set_head (remainder, remainder_size | PREV_INUSE |
                 (av != &main_arena ? NON_MAIN_ARENA : 0));
       /* Mark remainder as inuse so free() won't complain */
@@ -6543,6 +6610,8 @@ weak_alias (__malloc_trim, malloc_trim)
 
 strong_alias (__libc_malloc_group, __malloc_group) weak_alias (__libc_malloc_group, malloc_group) //cgmin
 strong_alias (__libc_get_size_sum, __get_size_sum) weak_alias (__libc_get_size_sum, get_size_sum)
+strong_alias (__libc_get_size_sum_p, __get_size_sum_p) weak_alias (__libc_get_size_sum_p, get_size_sum_p)
+strong_alias (__libc_get_size_cnt_p, __get_size_cnt_p) weak_alias (__libc_get_size_cnt_p, get_size_cnt_p)
 strong_alias (__libc_check_group, __check_group) weak_alias (__libc_check_group, check_group)
 
 #if SHLIB_COMPAT (libc, GLIBC_2_0, GLIBC_2_26)
