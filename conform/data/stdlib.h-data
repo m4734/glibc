@@ -197,6 +197,7 @@ function {void*} malloc_group (size_t, size_t)
 function {int} get_size_sum (void*)
 function {int*} get_size_sum_p (void*)
 function {int*} get_size_cnt_p (void*)
+function {unsigned long long} get_group_size (int)
 
 allow str[abcdefghijklmnopqrstuvwxyz]*
 #if !defined ISO && !defined ISO99 && !defined ISO11

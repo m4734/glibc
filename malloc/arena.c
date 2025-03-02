@@ -80,6 +80,10 @@ static __thread mstate thread_arena attribute_tls_model_ie;
 
 static __thread mstate thread_arena_group[10] attribute_tls_model_ie; //cgmin thread arena i will not use group 0
 static size_t arena_group_max=10;
+#define GROUP_STAT
+#ifdef GROUP_STAT
+static __thread unsigned long long group_size[10];
+#endif
 
 /* Arena free list.  free_list_lock synchronizes access to the
    free_list variable below, and the next_free and attached_threads

@@ -851,6 +851,7 @@ int  __libc_get_size_sum(void*);
 int __libc_check_group(void*);
 int*  __libc_get_size_sum_p(void*);
 int* __libc_get_size_cnt_p(void*);
+unsigned long long __libc_get_group_size(int);
 
 /* M_MXFAST is a standard SVID/XPG tuning option, usually listed in malloc.h */
 #ifndef M_MXFAST
@@ -3987,6 +3988,18 @@ return &hi->size_cnt[index];
 
 }
 
+unsigned long long
+_int_get_group_size(int group)
+{
+#ifdef GROUP_STAT
+return group_size[group];
+#else
+return 0;
+#endif
+}
+
+
+
 static void //cgmin size_sum
 add_size (mstate av, mchunkptr p)
 {
@@ -4002,6 +4015,10 @@ heap_info *hi = heap_for_ptr(p);
 
 int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
 unsigned long addr = (unsigned long)p;
+
+#ifdef GROUP_STAT
+	group_size[av->group]+=size;	
+#endif
 
 //printf("(%p %p %d %ld %p %d)\n",p,hi,index,size,hi->size_sum,hi->size_sum[index]);
 if ((addr%4096) + size < 4096)
@@ -4044,6 +4061,10 @@ heap_info *hi = heap_for_ptr(p);
 int index = ((unsigned long)(p)-(unsigned long)(hi))/4096;
 unsigned long addr = (unsigned long)p;
 
+#ifdef GROUP_STAT
+group_size[av->group]-=size;
+#endif
+
 //printf("sub_size %p %ld index %d\n",p,size,index);
 if ((addr%4096) + size < 4096)
 {
@@ -4054,6 +4075,7 @@ if (hi->size_sum[index] < size)
 }
 */
 	hi->size_sum[index]-=size;
+
 //printf("index %d\n",index);
 	return;
 
@@ -4116,6 +4138,16 @@ int*
 __libc_get_size_cnt_p(void *mem)
 {
 return _int_get_size_cnt_p(NULL,(mchunkptr)mem);
+}
+
+unsigned long long
+__libc_get_group_size(int group)
+{
+//#ifdef GROUP_STAT
+return _int_get_group_size(group);//group_size[group];
+//#else
+//return 0;
+//#endif
 }
 
 void *
@@ -6612,6 +6644,7 @@ strong_alias (__libc_malloc_group, __malloc_group) weak_alias (__libc_malloc_gro
 strong_alias (__libc_get_size_sum, __get_size_sum) weak_alias (__libc_get_size_sum, get_size_sum)
 strong_alias (__libc_get_size_sum_p, __get_size_sum_p) weak_alias (__libc_get_size_sum_p, get_size_sum_p)
 strong_alias (__libc_get_size_cnt_p, __get_size_cnt_p) weak_alias (__libc_get_size_cnt_p, get_size_cnt_p)
+strong_alias (__libc_get_group_size, __get_group_size) weak_alias (__libc_get_group_size, get_group_size)
 strong_alias (__libc_check_group, __check_group) weak_alias (__libc_check_group, check_group)
 
 #if SHLIB_COMPAT (libc, GLIBC_2_0, GLIBC_2_26)
