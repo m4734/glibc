@@ -543,7 +543,7 @@ extern int get_size_sum (void *mem) __THROW;// __attribute_malloc__
 
 extern int* get_size_sum_p (void *mem) __THROW;// __attribute_malloc__
 extern int* get_size_cnt_p (void *mem) __THROW;// __attribute_malloc__
-extern unsigned long long get_group_size (int group) __THROW;
+extern unsigned long long int get_group_size2 (int group) __THROW;
 
 extern int check_group (void *m) __THROW;
 

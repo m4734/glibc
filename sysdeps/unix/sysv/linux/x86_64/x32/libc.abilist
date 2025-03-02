@@ -291,7 +291,7 @@ GLIBC_2.16 __libc_malloc_group F
 GLIBC_2.16 __libc_get_size_sum F
 GLIBC_2.16 __libc_get_size_sum_p F
 GLIBC_2.16 __libc_get_size_cnt_p F
-GLIBC_2.16 __libc_get_group_size F
+GLIBC_2.16 __libc_get_group_size2 F
 GLIBC_2.16 __longjmp_chk F
 GLIBC_2.16 __lseek F
 GLIBC_2.16 __lxstat F
@@ -1915,7 +1915,7 @@ GLIBC_2.16 malloc_group F
 GLIBC_2.16 get_size_sum F
 GLIBC_2.16 get_size_sum_p F
 GLIBC_2.16 get_size_cnt_p F
-GLIBC_2.16 get_group_size F
+GLIBC_2.16 get_group_size2 F
 GLIBC_2.16 vasprintf F
 GLIBC_2.16 vdprintf F
 GLIBC_2.16 verr F

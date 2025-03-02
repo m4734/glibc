@@ -90,6 +90,7 @@ extern int get_size_sum (void *__mem) __THROW;// __attribute_malloc__
 
 extern int* get_size_sum_p (void *__mem) __THROW;//cgmin
 extern int* get_size_cnt_p (void *__mem) __THROW;//cgmin
+extern unsigned long long int get_group_size2 (int group) __THROW;//cgmin
 
 extern int check_group (void *m) __THROW;
 

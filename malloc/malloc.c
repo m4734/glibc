@@ -851,7 +851,7 @@ int  __libc_get_size_sum(void*);
 int __libc_check_group(void*);
 int*  __libc_get_size_sum_p(void*);
 int* __libc_get_size_cnt_p(void*);
-unsigned long long __libc_get_group_size(int);
+unsigned long long int __libc_get_group_size2(int);
 
 /* M_MXFAST is a standard SVID/XPG tuning option, usually listed in malloc.h */
 #ifndef M_MXFAST
@@ -3988,8 +3988,8 @@ return &hi->size_cnt[index];
 
 }
 
-unsigned long long
-_int_get_group_size(int group)
+static unsigned long long int
+_int_get_group_size2(int group)
 {
 #ifdef GROUP_STAT
 return group_size[group];
@@ -4140,11 +4140,11 @@ __libc_get_size_cnt_p(void *mem)
 return _int_get_size_cnt_p(NULL,(mchunkptr)mem);
 }
 
-unsigned long long
-__libc_get_group_size(int group)
+unsigned long long int
+__libc_get_group_size2(int group)
 {
 //#ifdef GROUP_STAT
-return _int_get_group_size(group);//group_size[group];
+return _int_get_group_size2(group);//group_size[group];
 //#else
 //return 0;
 //#endif
@@ -6644,7 +6644,7 @@ strong_alias (__libc_malloc_group, __malloc_group) weak_alias (__libc_malloc_gro
 strong_alias (__libc_get_size_sum, __get_size_sum) weak_alias (__libc_get_size_sum, get_size_sum)
 strong_alias (__libc_get_size_sum_p, __get_size_sum_p) weak_alias (__libc_get_size_sum_p, get_size_sum_p)
 strong_alias (__libc_get_size_cnt_p, __get_size_cnt_p) weak_alias (__libc_get_size_cnt_p, get_size_cnt_p)
-strong_alias (__libc_get_group_size, __get_group_size) weak_alias (__libc_get_group_size, get_group_size)
+strong_alias (__libc_get_group_size2, __get_group_size2) weak_alias (__libc_get_group_size2, get_group_size2)
 strong_alias (__libc_check_group, __check_group) weak_alias (__libc_check_group, check_group)
 
 #if SHLIB_COMPAT (libc, GLIBC_2_0, GLIBC_2_26)
